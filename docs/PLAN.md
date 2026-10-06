@@ -10,21 +10,20 @@ Implemented the platform data model, JSON persistence, execution boundary, RepoM
 Implemented a local worker/CLI boundary for release-aware lookup, rule search, release comparison, artifact field verification and evidence/provenance.
 
 ## Phase 4 — R16 → R25 Upgrade Assessment — COMPLETE
+Implemented RepoMind inventory ingestion, Temenos-Skills release comparison, release-change correlation, risk classification, remediation recommendations, verification plans and persisted evidence/findings/reports.
+
+## Phase 5 — Orchestration — COMPLETE
 Implemented:
-- RepoMind inventory ingestion
-- Temenos-Skills release comparison
-- release-change correlation with bank artifacts
-- risk classification
-- remediation recommendations
-- target-release verification plans
-- persisted findings/evidence/report
-- Markdown + machine-readable assessment output
-- provider/baseline limitations without fabricated release evidence
+- deterministic upgrade DAG
+- parallel independent discovery stages
+- resumable/pauseable run lifecycle
+- explicit human approval gate
+- node/event state
+- orchestrated Phase 4 execution path
+- agentic-suite worker/command adapter
+- safe manifest-only fallback when no bridge is configured
 
-**Exit:** a read-only assessment can explain what changed in the configured Temenos release evidence, which bank customizations are correlated, the risk, recommended action and verification path.
-
-## Phase 5 — Orchestration
-Integrate agentic-suite for DAG execution, parallel analysis, approvals and pause/resume. Introduce AgentVerse only where a generic execution runtime adds value.
+**Exit:** the R16 → R25 assessment can execute through a resumable DAG while keeping Temenos intelligence in this platform and treating agentic-suite as an optional conductor.
 
 ## Phase 6 — T24Tools Surface
 Expose the platform assessment as a user-facing engineering cockpit/read model without moving domain logic into the UI.

@@ -1,28 +1,18 @@
 # Next Phase
 
-Phase 4 is complete.
-
-## Phase 5 — Orchestration
-
-The next implementation step is to integrate **agentic-suite** as the workflow conductor:
-- run the assessment as a DAG
-- parallelize independent repository/release analyses
-- persist resumable workflow state
-- add explicit human approval gates before remediation
-- expose run events and progress
-- keep AgentVerse optional as an execution/runtime provider
-
-The domain logic remains in this platform. agentic-suite should orchestrate it rather than become the source of Temenos upgrade rules.
+Phase 5 is complete.
 
 ## Phase 6 — T24Tools Surface
 
-After orchestration, expose the assessment/report through T24Tools:
+Expose the platform assessment through T24Tools:
 - upgrade dashboard
 - artifact risk list
 - evidence viewer
-- remediation/verification checklist
+- remediation and verification checklist
 - exportable report
 
-## Important boundary
+The platform remains the domain/workflow layer; T24Tools remains the presentation/cockpit layer.
 
-R16 → R25 is only as evidence-complete as the configured Temenos-Skills release knowledge. If the provider does not contain R16, the platform must report the missing baseline and must not infer an R16 diff from R23/R25 data.
+R16 → R25 is only as evidence-complete as the configured Temenos-Skills release knowledge. If R16 is unavailable, the platform must report the missing baseline and must not infer an R16 diff from R23/R25 data.
+
+After Phase 6: approved remediation workflows, regression intelligence, then ADC zero-downtime upgrade planning. Production-impacting actions remain approval-gated.
