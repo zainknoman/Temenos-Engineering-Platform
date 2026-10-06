@@ -18,7 +18,7 @@ The platform owns cross-system correlation, evidence, risk, workflow policy, rem
 
 R16 -> R25 Upgrade & Migration Intelligence
 
-Bank Repository -> RepoMind Inventory -> Temenos-Skills Release Evidence -> Correlation + Impact Graph -> Risk -> Remediation -> Human Approval -> Approved Remediation + Rollback -> Verification + Report -> T24Tools Cockpit
+Bank Repository -> RepoMind Inventory -> Temenos-Skills Release Evidence -> Correlation + Impact Graph -> Risk -> Remediation -> Human Approval -> Approved Remediation + Rollback -> Verification + Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Final Human Approval -> External Cutover
 
 ## Implemented phases
 
@@ -29,9 +29,10 @@ Bank Repository -> RepoMind Inventory -> Temenos-Skills Release Evidence -> Corr
 - Phase 5 — native DAG orchestration and safe agentic-suite bridge
 - Phase 6 — T24Tools presentation read model and export contract
 - Phase 7 — approval-gated remediation workflow and CI
-- Phase 8 — regression intelligence and T24Tools regression status
+- Phase 8 — regression intelligence
 - Phase 9 — runtime, migration and deployment-readiness intelligence
 - Phase 10 — ADC zero-downtime upgrade intelligence
+- Phase 11 — Upgrade Control Tower
 
 ## Safety
 
@@ -41,15 +42,6 @@ The platform does not autonomously migrate production data, deploy production so
 
 GitHub Actions workflow .github/workflows/cli.yml runs npm test on pushes and pull requests.
 
-## Principles
+## Phase 11
 
-1. Keep source repositories independent.
-2. Integrate through capability adapters and explicit transports.
-3. Preserve evidence and provenance.
-4. Require human approval before consequential actions.
-5. Do not invent release evidence.
-6. Keep credentials in runtime environments, never in platform contracts.
-
-## Phase 10
-
-ADC Zero-Downtime Upgrade Intelligence models active/standby topology, health checks, target compatibility, dual-run readiness, session and transaction safety, migration checkpoints, controlled traffic drain/switch planning, rollback readiness and a human approval gate. Actual ADC traffic switching remains external and explicitly approved.
+The Upgrade Control Tower unifies upgrade, regression, runtime/migration and ADC readiness into one auditable go/no-go model with a single cutover timeline. READY_FOR_APPROVAL still requires explicit final human approval before external deployment or ADC switching.

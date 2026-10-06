@@ -1,0 +1,3 @@
+export function buildUpgradeControlTowerSurface({project,controlTower=null}){
+ return {schemaVersion:'1.0',surface:'T24Tools',type:'UPGRADE_CONTROL_TOWER_COCKPIT',project:{id:project.id,name:project.name,sourceRelease:project.sourceRelease,targetRelease:project.targetRelease},status:controlTower?.status??'BLOCKED',goNoGo:controlTower?.goNoGo??'NO_GO',gates:controlTower?.gates??[],criticalFindingCount:controlTower?.criticalFindingCount??0,cutoverTimeline:controlTower?.cutoverTimeline??[],approvals:controlTower?.approvals??{deployment:'NOT_REQUESTED'},recommendation:controlTower?.recommendation??'DO_NOT_PROCEED',safety:{humanApprovalRequired:true,autonomousExecution:false}};
+}
