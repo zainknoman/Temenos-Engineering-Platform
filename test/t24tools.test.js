@@ -72,6 +72,7 @@ test('T24Tools adapter exposes stable read-model capabilities', () => {
     'getEvidence',
     'getRemediationChecklist',
     'getRegressionStatus',
+    'getRuntimeMigrationStatus',
     'exportReport'
   ]);
   assert.equal(adapter.getArtifactRiskList({ project, run, artifacts, findings, evidence, report, regression }).length, 1);
