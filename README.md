@@ -6,37 +6,19 @@ Integration and workflow platform for Temenos engineering intelligence.
 
 The platform connects independent engineering capabilities without merging their source repositories:
 
-- **Temenos-Skills** — Temenos release/domain knowledge, field/rule lookup and verification
-- **RepoMind** — bank customization repository intelligence
-- **agentic-suite** — optional workflow/conductor integration
-- **AgentVerse** — optional generic agent/runtime provider
-- **T24Tools** — presentation/cockpit surface
+- Temenos-Skills — Temenos release/domain knowledge, field/rule lookup and verification
+- RepoMind — bank customization repository intelligence
+- agentic-suite — optional workflow/conductor integration
+- AgentVerse — optional generic agent/runtime provider
+- T24Tools — presentation/cockpit surface
 
-The platform owns cross-system correlation, evidence, risk, workflow policy and reports.
+The platform owns cross-system correlation, evidence, risk, workflow policy, remediation and reports.
 
 ## Flagship capability
 
-**R16 → R25 Upgrade & Migration Intelligence**
+R16 -> R25 Upgrade & Migration Intelligence
 
-    Bank Repository
-        ↓
-    RepoMind Inventory
-        ↓
-    Normalized T24 Artifacts
-        ↓
-    Temenos-Skills Release Evidence
-        ↓
-    Correlation + Impact Graph
-        ↓
-    Risk Classification
-        ↓
-    Remediation Recommendation
-        ↓
-    Human Approval
-        ↓
-    Verification + Report
-        ↓
-    T24Tools Cockpit
+Bank Repository -> RepoMind Inventory -> Temenos-Skills Release Evidence -> Correlation + Impact Graph -> Risk -> Remediation -> Human Approval -> Approved Remediation + Rollback -> Verification + Report -> T24Tools Cockpit
 
 ## Implemented phases
 
@@ -45,19 +27,18 @@ The platform owns cross-system correlation, evidence, risk, workflow policy and 
 - Phase 3 — Temenos-Skills adapter
 - Phase 4 — release-aware correlation, risk, evidence, remediation, verification and report
 - Phase 5 — native DAG orchestration and safe agentic-suite bridge
-- **Phase 6 — T24Tools presentation read model and export contract**
+- Phase 6 — T24Tools presentation read model and export contract
+- Phase 7 — approval-gated remediation workflow and CI
 
-## Phase 6
+## Phase 7
 
-The T24Tools boundary is intentionally read-only. Use `T24ToolsAdapter` to expose:
+The remediation layer creates evidence-linked candidate changes, requires explicit human approval, captures rollback information before application, and records verification results.
 
-- upgrade dashboard
-- artifact risk list
-- evidence
-- remediation/verification checklist
-- Markdown report export
+It does not invent exact Temenos source replacements and does not directly mutate production or switch ADC traffic.
 
-T24Tools remains the UI/cockpit; the platform remains the domain/workflow layer.
+## CI
+
+GitHub Actions workflow .github/workflows/cli.yml runs npm test on pushes and pull requests.
 
 ## Principles
 
@@ -67,9 +48,3 @@ T24Tools remains the UI/cockpit; the platform remains the domain/workflow layer.
 4. Require human approval before consequential actions.
 5. Do not invent release evidence.
 6. Keep credentials in runtime environments, never in platform contracts.
-
-## Tests
-
-Run `npm test`.
-
-Phase 6 adds three tests for the T24Tools read model and adapter.

@@ -1,23 +1,21 @@
 # Next Phase
 
-Phase 6 is complete.
+Phase 7 is complete.
 
-## Phase 7 — Approved Remediation Workflows
+## Phase 8 — Regression Intelligence
 
-Build approval-gated remediation workflows around findings:
+Build upgrade regression intelligence around approved remediation:
 
-- generate candidate code/config changes
-- attach exact evidence and affected artifacts
-- require human approval before applying changes
-- verify compile/build and focused regression tests
-- preserve before/after provenance and rollback information
-
-No production migration or ADC traffic switching is automatic.
+- map findings to affected applications and business flows
+- generate focused test packs
+- connect compile/build results with runtime/log evidence
+- compare pre/post upgrade behavior
+- expose regression status in T24Tools
 
 ## Later
 
-- regression intelligence
 - ADC zero-downtime upgrade planning
 - migration execution controls
+- production deployment gates
 
-R16 → R25 remains evidence-complete only when the configured Temenos-Skills release knowledge contains the required source baseline. If R16 is unavailable, the platform must report the limitation rather than infer the diff.
+R16 -> R25 remains evidence-complete only when the configured Temenos-Skills release knowledge contains the required source baseline. If R16 is unavailable, the platform must report the limitation rather than infer the diff.
