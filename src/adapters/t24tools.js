@@ -7,7 +7,7 @@ export class T24ToolsAdapter {
   }
 
   capabilities() {
-    return ['getUpgradeDashboard', 'getArtifactRiskList', 'getEvidence', 'getRemediationChecklist', 'exportReport'];
+    return ['getUpgradeDashboard', 'getArtifactRiskList', 'getEvidence', 'getRemediationChecklist', 'getRegressionStatus', 'exportReport'];
   }
 
   getUpgradeDashboard(input) {
@@ -24,6 +24,10 @@ export class T24ToolsAdapter {
 
   getRemediationChecklist(input) {
     return this.getUpgradeDashboard(input).checklist;
+  }
+
+  getRegressionStatus(input) {
+    return this.getUpgradeDashboard(input).regression;
   }
 
   exportReport(input) {
