@@ -11,22 +11,24 @@
 
 **Exit:** architecture and boundaries are explicit.
 
-## Phase 1 — Integration Discovery
+## Phase 1 — Integration Discovery — COMPLETE
 
-Inspect all five source repositories without modifying them.
+All five source repositories were inspected without modification.
 
-Deliverables:
+Deliverables completed:
 
 - capability matrix
-- reusable-interface matrix
-- dependency map
+- repository responsibility map
+- adapter strategy
+- normalized data model
+- R16 → R25 workflow design
 - integration risks
-- adapter APIs
-- release/feature compatibility map
+- MVP implementation backlog
+- source baselines
 
-**Exit:** every MVP dependency has a documented integration path.
+**Exit:** every MVP dependency has a documented integration boundary and the first vertical slice has a defined implementation path.
 
-## Phase 2 — RepoMind Adapter
+## Phase 2 — Platform Foundation + RepoMind Adapter
 
 Initial read-only capabilities:
 

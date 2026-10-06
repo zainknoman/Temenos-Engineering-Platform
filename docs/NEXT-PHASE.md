@@ -1,25 +1,23 @@
 # Next Phase
 
-## Phase 1 — Integration Discovery
+## Phase 2 — Platform Foundation + RepoMind Adapter
 
-No production implementation should start until the five source repositories are inspected and mapped.
+Phase 1 discovery is complete. No source repository was modified.
 
 ### Work items
 
-1. inspect Temenos-Skills architecture and capabilities
-2. inspect T24Tools architecture and integration opportunities
-3. inspect RepoMind indexing/search/graph capabilities
-4. inspect agentic-suite orchestration contracts
-5. inspect AgentVerse runtime boundaries
-6. build capability matrix
-7. define normalized artifact model
-8. define evidence/provenance model
-9. define adapter interfaces
-10. design the R16 → R25 assessment workflow
-11. identify the smallest end-to-end proof of value
+1. create the platform runtime skeleton
+2. implement Project / Run / Artifact / Finding / Evidence contracts
+3. implement adapter registry and capability discovery
+4. implement the first read-only RepoMind adapter
+5. import a representative T24 customization repository
+6. normalize T24 routines, applications, Java links and dependencies
+7. persist the first analysis run
+8. add tests around normalization and provenance
+9. prepare the Temenos-Skills adapter contract
 
 ### Deliverable
 
-A Phase 1 architecture package containing capability matrix, integration map, contract specification, adapter specifications, workflow specification and MVP implementation backlog.
+A working local platform foundation that can ingest one representative repository through the RepoMind boundary and persist normalized, evidence-backed artifacts.
 
-Only after this package is complete should application code begin.
+Only the new Temenos-Engineering-Platform repository should be modified in Phase 2.

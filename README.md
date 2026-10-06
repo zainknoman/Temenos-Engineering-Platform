@@ -48,6 +48,14 @@ Expected output: customization inventory, impacted applications/fields/APIs/comp
 - [Repository Boundaries](docs/REPOSITORY-BOUNDARIES.md)
 - [Decision Log](docs/DECISIONS.md)
 - [R16 → R25 Workflow](docs/workflows/R16-R25-UPGRADE-ASSESSMENT.md)
+- [Phase 1 Discovery](docs/PHASE-1-DISCOVERY.md)
+- [Capability Matrix](docs/CAPABILITY-MATRIX.md)
+- [Integration Adapters](docs/INTEGRATION-ADAPTERS.md)
+- [Common Data Model](docs/DATA-MODEL.md)
+- [Workflow Design](docs/WORKFLOW-DESIGN.md)
+- [Integration Risks](docs/INTEGRATION-RISKS.md)
+- [MVP Backlog](docs/MVP-BACKLOG.md)
+- [Source Repository Baselines](docs/SOURCE-REPOSITORY-BASELINES.md)
 - [Next Phase](docs/NEXT-PHASE.md)
 
 ## Non-goals
