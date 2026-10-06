@@ -1,32 +1,33 @@
 # Implementation Plan
 
-## Phase 0 — Foundation
-Documentation, boundaries, contracts, adapter interfaces, workflow state and evidence model.
-
-## Phase 1 — Integration Discovery — COMPLETE
-Capability matrix, responsibility map, adapter strategy, normalized data model, R16 → R25 workflow, risks, backlog, source baselines, execution/runtime architecture, runtime modes and adapter transports.
+## Phase 1 — Discovery — COMPLETE
+Repository boundaries, capability matrix, contracts, workflow design, integration risks and MVP backlog were defined without modifying the five source repositories.
 
 ## Phase 2 — Platform Foundation + RepoMind Adapter — COMPLETE
-Runtime skeleton; Project/Run/Artifact/Dependency/Finding/Evidence contracts; JSON persistence; adapter registry; execution registry; read-only RepoMind export adapter; T24 artifact normalization; fixture; first assessment workflow; tests.
+Implemented the platform data model, JSON persistence, execution boundary, RepoMind read-only export adapter, T24 artifact normalization and initial assessment workflow.
 
 ## Phase 3 — Temenos-Skills Adapter — COMPLETE
-Implemented a real local worker/CLI boundary with release-aware field lookup, business-rule search, R23→R25 comparison, artifact field verification, provider failure handling and evidence provenance.
+Implemented a local worker/CLI boundary for release-aware lookup, rule search, release comparison, artifact field verification and evidence/provenance.
 
-**Exit:** the platform can invoke the existing Temenos-Skills knowledge pipeline without copying its source or making the platform depend on Claude Code as its only runtime.
-
-## Phase 4 — R16 → R25 Upgrade Assessment
-- release diff
-- correlation engine
+## Phase 4 — R16 → R25 Upgrade Assessment — COMPLETE
+Implemented:
+- RepoMind inventory ingestion
+- Temenos-Skills release comparison
+- release-change correlation with bank artifacts
 - risk classification
 - remediation recommendations
-- verification plan
-- report generation
+- target-release verification plans
+- persisted findings/evidence/report
+- Markdown + machine-readable assessment output
+- provider/baseline limitations without fabricated release evidence
+
+**Exit:** a read-only assessment can explain what changed in the configured Temenos release evidence, which bank customizations are correlated, the risk, recommended action and verification path.
 
 ## Phase 5 — Orchestration
-Integrate agentic-suite for DAG execution, parallel analysis, gates, approvals and pause/resume. Introduce AgentVerse where useful.
+Integrate agentic-suite for DAG execution, parallel analysis, approvals and pause/resume. Introduce AgentVerse only where a generic execution runtime adds value.
 
 ## Phase 6 — T24Tools Surface
-Expose workflow/results through a user-facing integration surface.
+Expose the platform assessment as a user-facing engineering cockpit/read model without moving domain logic into the UI.
 
 ## Post-MVP
-Approved remediation; regression intelligence; runtime/log intelligence; ADC zero-downtime planning; bank knowledge packs; solution-architect workflows; controlled migration factory; enterprise deployment.
+Approved remediation, regression intelligence, runtime/log intelligence, ADC zero-downtime planning, bank knowledge packs, solution-architect workflows, migration factory and enterprise deployment.

@@ -19,10 +19,29 @@ This repository is the integration and product layer for five independent system
 
 The first flagship capability is **R16 → R25 Upgrade & Migration Intelligence**.
 
-## Phase 3
-The platform now has a real Temenos-Skills execution boundary:
+## Phase 4 — R16 → R25 Upgrade Assessment
 
-`Platform → Temenos-Skills adapter → local Python worker → existing Temenos-Skills pipeline → structured result + evidence`
+The platform now combines RepoMind inventory with Temenos-Skills release evidence:
+
+RepoMind inventory → release diff → artifact correlation → risk → remediation → verification → report
+
+Implemented:
+- release-aware correlation by application, field, position and jBC/component mapping
+- Critical/High/Medium/Low risk classification
+- evidence-backed findings and limitations
+- remediation recommendations
+- target-release verification plans
+- machine-readable + Markdown assessment report
+- graceful handling when the configured Temenos-Skills release baseline is unavailable
+
+The workflow remains read-only. It does **not** rewrite bank source, execute production migration, or switch ADC traffic.
+
+> Important: the current Temenos-Skills release map may not contain every historical release. If R16 is not available in the configured knowledge DB, the assessment records that limitation instead of pretending an R16 diff exists.
+
+## Phase 3
+The platform has a real Temenos-Skills execution boundary:
+
+Platform → Temenos-Skills adapter → local Python worker → existing Temenos-Skills pipeline → structured result + evidence
 
 Implemented:
 - release-aware field lookup
@@ -32,7 +51,7 @@ Implemented:
 - provider/runtime failure handling
 - evidence/provenance
 
-Configure `TEMENOS_SKILLS_HOME` to point at your local Temenos-Skills checkout.
+Configure TEMENOS_SKILLS_HOME to point at your local Temenos-Skills checkout.
 
 ## Principles
 - Keep all five source repositories independent and untouched.
