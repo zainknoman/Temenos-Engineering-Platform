@@ -1,16 +1,16 @@
 # Next Phase
 
-Phase 7 is complete.
+Phase 8 is complete.
 
-## Phase 8 — Regression Intelligence
+## Phase 9 — Runtime & Migration Intelligence
 
-Build upgrade regression intelligence around approved remediation:
+Build on regression evidence to connect:
 
-- map findings to affected applications and business flows
-- generate focused test packs
-- connect compile/build results with runtime/log evidence
-- compare pre/post upgrade behavior
-- expose regression status in T24Tools
+- compile/build execution adapters
+- runtime and log collectors
+- migration rehearsal and data-validation evidence
+- pre/post runtime comparisons
+- deployment and rollback readiness gates
 
 ## Later
 

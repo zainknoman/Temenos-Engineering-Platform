@@ -1,6 +1,6 @@
 import { buildRemediationRecommendation, buildVerificationPlan } from '../analysis/upgrade.js';
 
-export function buildT24ToolsDashboard({ project, run, artifacts = [], findings = [], evidence = [], report = null }) {
+export function buildT24ToolsDashboard({ project, run, artifacts = [], findings = [], evidence = [], report = null, regression = null }) {
   const artifactById = new Map(artifacts.map(a => [a.id, a]));
   const riskCounts = findings.reduce((counts, finding) => {
     counts[finding.severity] = (counts[finding.severity] ?? 0) + 1;
@@ -81,6 +81,13 @@ export function buildT24ToolsDashboard({ project, run, artifacts = [], findings 
       toolVersion: item.toolVersion
     })),
     checklist,
+    regression: regression ? {
+      status: regression.status,
+      testCount: regression.testCount,
+      priorityCounts: regression.priorityCounts,
+      summary: regression.summary,
+      evidenceIds: regression.evidenceIds
+    } : null,
     report: report ? {
       id: report.id,
       type: report.type,

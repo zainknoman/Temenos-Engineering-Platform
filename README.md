@@ -29,6 +29,7 @@ Bank Repository -> RepoMind Inventory -> Temenos-Skills Release Evidence -> Corr
 - Phase 5 — native DAG orchestration and safe agentic-suite bridge
 - Phase 6 — T24Tools presentation read model and export contract
 - Phase 7 — approval-gated remediation workflow and CI
+- Phase 8 — regression intelligence and T24Tools regression status
 
 ## Phase 7
 
@@ -48,3 +49,7 @@ GitHub Actions workflow .github/workflows/cli.yml runs npm test on pushes and pu
 4. Require human approval before consequential actions.
 5. Do not invent release evidence.
 6. Keep credentials in runtime environments, never in platform contracts.
+
+## Phase 8
+
+Regression intelligence maps upgrade findings to focused tests, compares pre/post behavior, captures build and runtime/log evidence, and exposes regression status through T24Tools. It does not autonomously execute production tests or switch ADC traffic.

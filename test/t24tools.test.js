@@ -42,6 +42,7 @@ const report = {
   releaseDiffSummary: { fields_removed: 1 },
   markdown: '# R16 -> R25 Upgrade Assessment'
 };
+const regression = { status: 'INCONCLUSIVE', testCount: 3, priorityCounts: { P0: 1, P1: 2 }, summary: { passed: 1, failed: 0, changed: 1, incomplete: 1 }, evidenceIds: ['evidence:regression'] };
 const run = {
   id: 'run:1',
   workflow: 'R16-R25-UPGRADE-ASSESSMENT',
@@ -53,7 +54,7 @@ const run = {
 };
 
 test('T24Tools dashboard exposes upgrade cockpit sections', () => {
-  const dashboard = buildT24ToolsDashboard({ project, run, artifacts, findings, evidence, report });
+  const dashboard = buildT24ToolsDashboard({ project, run, artifacts, findings, evidence, report, regression });
   assert.equal(dashboard.surface, 'T24Tools');
   assert.equal(dashboard.summary.findingCount, 1);
   assert.equal(dashboard.summary.riskCounts.Critical, 1);
@@ -70,9 +71,11 @@ test('T24Tools adapter exposes stable read-model capabilities', () => {
     'getArtifactRiskList',
     'getEvidence',
     'getRemediationChecklist',
+    'getRegressionStatus',
     'exportReport'
   ]);
-  assert.equal(adapter.getArtifactRiskList({ project, run, artifacts, findings, evidence, report }).length, 1);
+  assert.equal(adapter.getArtifactRiskList({ project, run, artifacts, findings, evidence, report, regression }).length, 1);
+  assert.equal(adapter.getRegressionStatus({ project, run, artifacts, findings, evidence, report, regression }).status, 'INCONCLUSIVE');
 });
 
 test('T24Tools report export returns a markdown download contract', () => {
