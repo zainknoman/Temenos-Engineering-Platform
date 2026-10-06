@@ -15,3 +15,5 @@ export*from'./surfaces/t24tools.js';
 export*from'./orchestration/dag.js';
 export*from'./workflows/assessment.js';
 export*from'./workflows/orchestrated-assessment.js';
+export*from'./adapters/regression.js';
+export*from'./regression/intelligence.js';
