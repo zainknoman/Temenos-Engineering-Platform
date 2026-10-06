@@ -1,0 +1,3 @@
+export const RUNTIME_MODES=Object.freeze(['local','worker','service']);
+export class ExecutionRegistry{constructor(){this.providers=new Map()}register(p){if(!p?.id||!p.execute)throw new Error('Execution provider requires id and execute()');this.providers.set(p.id,p);return p}get(id){return this.providers.get(id)??null}async execute(request){const p=this.get(request.provider);if(!p)throw new Error('Execution provider not registered: '+request.provider);return p.execute(request)}list(){return[...this.providers.values()].map(p=>({id:p.id,mode:p.mode??'local',capabilities:p.capabilities??[]}))}}
+export const createLocalProvider=handler=>({id:'local-process',mode:'local',capabilities:['execute'],execute:handler});

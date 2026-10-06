@@ -1,0 +1,1 @@
+import{RepoMindAdapter}from'../adapters/repomind.js';export function normalizeRepoMindIndex({projectId,release,index}){const a=new RepoMindAdapter();a.loadIndex(index);return a.normalize(projectId,release)}

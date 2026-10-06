@@ -13,35 +13,31 @@ This repository is the integration and product layer for five independent system
 | AgentVerse | Generic agent runtime, execution, sandboxing, memory and provider infrastructure |
 
 ## Vision
-
-Combine three forms of intelligence:
-
 1. **What should Temenos do?** — Temenos-Skills.
 2. **What does this bank actually have?** — RepoMind.
-3. **What should we do next, and can we prove it?** — this platform, orchestrated by agentic-suite and optionally executed through AgentVerse.
+3. **What should we do next, and can we prove it?** — this platform.
 
 The first flagship capability is **R16 → R25 Upgrade & Migration Intelligence**.
 
 ## Principles
-
 - Keep all five source repositories independent and untouched.
-- Integrate through adapters and stable contracts, not source-code copying.
+- Integrate through adapters and stable contracts.
+- Use Capability → Adapter → Transport → Runtime for external execution.
 - Evidence before automation.
-- Make release-aware decisions.
 - Require human approval before destructive or production-impacting actions.
-- Preserve provenance for findings and recommendations.
+- Preserve provenance.
 - Prefer deterministic analysis and verification over unsupported AI guesses.
-- Start with an end-to-end vertical slice before building a large framework.
 
-## MVP
+## Phase 2
+The current foundation supports:
 
-`Bank Repository → Inventory → R16/R25 Analysis → Impact Graph → Risk Classification → Remediation Recommendations → Verification Plan → Human Review → Upgrade Report`
-
-Expected output: customization inventory, impacted applications/fields/APIs/components/routines, release-change findings, dependency graph, risk classification, evidence, remediation recommendations, verification status, regression plan and management-ready report.
+RepoMind export → normalized artifacts/dependencies → persisted R16 → R25 assessment run
 
 ## Documentation
-
 - [Architecture](docs/ARCHITECTURE.md)
+- [Execution Architecture](docs/EXECUTION-ARCHITECTURE.md)
+- [Runtime Modes](docs/RUNTIME-MODES.md)
+- [Adapter Transports](docs/ADAPTER-TRANSPORTS.md)
 - [Implementation Plan](docs/PLAN.md)
 - [MVP](docs/MVP.md)
 - [Contracts](docs/CONTRACTS.md)
@@ -59,30 +55,9 @@ Expected output: customization inventory, impacted applications/fields/APIs/comp
 - [Next Phase](docs/NEXT-PHASE.md)
 
 ## Non-goals
-
-Initially this project will not rewrite the five source repositories, copy their source code, become another generic coding-agent framework, replace official Temenos tooling/documentation, or autonomously migrate production systems.
+This project will not copy source from the five repositories, replace official Temenos tooling, become another generic coding-agent framework, or autonomously migrate production systems.
 
 ## Roadmap
+MVP: RepoMind adapter → Temenos-Skills adapter → R16 → R25 impact workflow → agentic-suite orchestration → unified report → T24Tools surface.
 
-### MVP
-1. Architecture and contracts
-2. RepoMind adapter
-3. Temenos-Skills adapter
-4. R16 → R25 impact workflow
-5. agentic-suite orchestration adapter
-6. Unified assessment report
-7. T24Tools integration surface
-
-### Post-MVP
-- approved automated remediation
-- T24 test/regression intelligence
-- runtime/log intelligence
-- ADC zero-downtime upgrade planning
-- bank knowledge packs
-- solution-architect workflows
-- controlled migration factory
-- enterprise deployment
-
-## Development rule
-
-Changes required in the five source repositories must be proposed separately and deliberately. This repository must not depend on undocumented internal implementation details.
+Post-MVP: approved remediation, regression intelligence, runtime/log intelligence, ADC zero-downtime planning, bank knowledge packs, solution-architect workflows, migration factory and enterprise deployment.

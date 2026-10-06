@@ -1,23 +1,19 @@
 # Decision Log
 
-## ADR-001 — Separate integration repository
+## ADR-001 — Keep the five source repositories independent
+The platform integrates rather than absorbs Temenos-Skills, RepoMind, agentic-suite, AgentVerse or T24Tools.
 
-Create a new Temenos Engineering Platform repository instead of cloning or merging the five existing repositories.
+## ADR-002 — Platform owns cross-system correlation
+Release impact, bank customization impact, risk, evidence aggregation and upgrade workflow logic belong here.
 
-**Reason:** preserve ownership boundaries, reduce duplication and allow independent evolution.
+## ADR-003 — Evidence before automation
+High-confidence findings require traceable evidence and known limitations.
 
-## ADR-002 — Existing repositories remain untouched
+## ADR-004 — AgentVerse is optional
+AgentVerse is a runtime/provider, not the platform master execution architecture.
 
-Do not modify Temenos-Skills, T24Tools, RepoMind, agentic-suite or AgentVerse as part of initial platform work.
+## ADR-005 — Capability / Adapter / Transport / Runtime
+External tools may run as Claude Code skills, CLI processes, MCP servers, workers or HTTP services. The domain layer must not encode one runtime assumption.
 
-**Reason:** establish architecture first and avoid destabilizing working projects.
-
-## ADR-003 — R16 → R25 is the first vertical slice
-
-Make upgrade impact intelligence the MVP because it combines repository intelligence, release-aware Temenos knowledge, orchestration and verification around a high-value banking problem.
-
-## ADR-004 — Evidence-first automation
-
-Findings and recommendations retain provenance and verification status.
-
-**Reason:** upgrade engineering requires explainability and auditability.
+## ADR-006 — RepoMind Phase 2 is read-only
+Phase 2 consumes an exported RepoMind analysis boundary. It does not mutate RepoMind or invent a remote API for the browser-first application.

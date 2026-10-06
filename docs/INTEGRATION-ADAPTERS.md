@@ -1,107 +1,56 @@
 # Integration Adapter Design
 
-Adapters are ports between the platform and external repositories. They must return platform contracts and preserve source provenance.
+Adapters are ports between the platform and external repositories. They return platform contracts and preserve provenance.
+
+## Adapter lifecycle
+
+Each adapter declares:
+- id and version
+- capabilities
+- transport
+- runtime mode
+- provider limitations
+- structured failure categories
+
+The transport can change without changing workflow code.
 
 ## 1. Temenos-Skills adapter
 
-### Purpose
+Capabilities:
+lookupField, lookupApplication, lookupClass, searchRules, compareReleases, verifyArtifact, generateArtifact
 
-Expose release-aware Temenos evidence.
+Preferred transport: MCP/CLI worker. The worker owns provider authentication and process lifecycle.
 
-### Required capabilities
-
-```
-lookupField(release, application, field)
-lookupApplication(release, application)
-lookupClass(release, className)
-searchRules(query, release, topic?)
-compareReleases(sourceRelease, targetRelease)
-verifyArtifact(artifact, release)
-generateArtifact(request, release)
-```
-
-### Preferred transport
-
-Use the existing MCP/CLI/pipeline surfaces where practical. Do not read the internal SQLite database directly from the platform as the primary contract.
-
-### Evidence
-
-Return source reference, release, lookup type, verification result and tool version.
+Evidence includes source reference, release, lookup type, verification result and tool version.
 
 ## 2. RepoMind adapter
 
-### Purpose
+Capabilities:
+indexRepository, getRepositoryProfile, listArtifacts, findSymbol, findReferences, getDependencies, getDependents, analyzeImpact, runAnalyzer, getLimitations
 
-Turn a bank customization repository into normalized codebase intelligence.
+Phase 2 transport: exported analysis JSON. This is intentionally read-only and avoids inventing a fake remote API for RepoMind's browser/local-first architecture.
 
-### Required capabilities
-
-```
-indexRepository(source)
-getRepositoryProfile()
-listArtifacts(filter?)
-findSymbol(query)
-findReferences(symbol)
-getDependencies(node)
-getDependents(node)
-analyzeImpact(node, options)
-runAnalyzer(analyzerId?)
-getLimitations()
-```
-
-### Initial transport
-
-Because RepoMind is currently browser/local-first, the first adapter should be a thin local integration boundary around its analysis model or an exported analysis artifact. Do not create a fake remote API merely for symmetry.
+The adapter normalizes files, symbols/dependencies and limitations into platform artifacts, dependencies and evidence.
 
 ## 3. agentic-suite adapter
 
-### Purpose
+Capabilities:
+createWorkflow, startRun, pauseRun, resumeRun, approveGate, getRunState, getRunEvents
 
-Delegate long-running workflow orchestration.
-
-### Required capabilities
-
-```
-createWorkflow(definition)
-startRun(runId)
-pauseRun(runId)
-resumeRun(runId)
-approveGate(runId, gateId)
-getRunState(runId)
-getRunEvents(runId)
-```
-
-### Boundary
-
-The platform owns the business workflow definition. agentic-suite owns execution mechanics such as scheduling, task parallelism, state persistence and dashboard mechanics.
+Transport: worker/CLI initially. The platform owns business workflow definitions; agentic-suite owns scheduling, task parallelism, state and dashboard mechanics.
 
 ## 4. AgentVerse adapter
 
-### Purpose
+Capabilities:
+executeAgent, executePipeline, requestApproval, memoryRead, memoryWrite, sandboxExecute
 
-Optional generic runtime.
+Transport: HTTP/API.
 
-### Required capabilities
-
-```
-executeAgent(request)
-executePipeline(request)
-requestApproval(request)
-memoryRead(request)
-memoryWrite(request)
-sandboxExecute(request)
-```
-
-### MVP rule
-
-Do not make the first R16 → R25 assessment depend on AgentVerse. Add it after the workflow works using the simplest reliable execution path.
+MVP rule: AgentVerse is optional. Do not make the first R16 → R25 assessment depend on it.
 
 ## 5. T24Tools adapter
 
-T24Tools is primarily a presentation surface, not a backend dependency.
-
-Initial integration should expose platform results in a form T24Tools can consume later:
-
+T24Tools is primarily a presentation surface. Initial integration exposes:
 - project/run status
 - findings
 - evidence
@@ -109,13 +58,12 @@ Initial integration should expose platform results in a form T24Tools can consum
 - artifact details
 - impact graph data
 
-Do not embed T24Tools source in this repository.
+Do not embed T24Tools source here.
 
 ## Adapter contract rules
 
 Every adapter must:
-
-- declare its version/capabilities
+- declare version, capabilities, transport and runtime mode
 - return normalized objects
 - preserve provenance
 - expose explicit failures

@@ -1,78 +1,27 @@
 # Implementation Plan
 
 ## Phase 0 — Foundation
-
-- documentation
-- repository boundaries
-- common contracts
-- adapter interfaces
-- workflow state
-- evidence/provenance model
-
-**Exit:** architecture and boundaries are explicit.
+Documentation, boundaries, contracts, adapter interfaces, workflow state and evidence model.
 
 ## Phase 1 — Integration Discovery — COMPLETE
+Capability matrix, responsibility map, adapter strategy, normalized data model, R16 → R25 workflow, risks, backlog, source baselines, execution/runtime architecture, runtime modes and adapter transports.
 
-All five source repositories were inspected without modification.
+## Phase 2 — Platform Foundation + RepoMind Adapter — COMPLETE
+Implemented runtime skeleton; Project, Run, Artifact, Dependency, Finding and Evidence contracts; JSON persistence; adapter registry; execution registry; read-only RepoMind export adapter; T24 artifact normalization; representative fixture; first R16 → R25 assessment workflow; tests for normalization, provenance and persistence.
 
-Deliverables completed:
-
-- capability matrix
-- repository responsibility map
-- adapter strategy
-- normalized data model
-- R16 → R25 workflow design
-- integration risks
-- MVP implementation backlog
-- source baselines
-
-**Exit:** every MVP dependency has a documented integration boundary and the first vertical slice has a defined implementation path.
-
-## Phase 2 — Platform Foundation + RepoMind Adapter
-
-Initial read-only capabilities:
-
-- repository status/index
-- artifact inventory
-- symbol/reference search
-- dependency graph
-- impact candidates
+**Exit:** a local platform run can ingest a RepoMind export and persist normalized evidence-backed artifacts without changing RepoMind.
 
 ## Phase 3 — Temenos-Skills Adapter
-
-Initial capabilities:
-
-- field lookup
-- API/class lookup
-- release-aware comparison
-- generation recommendations
-- compile/verification evidence
+Validate live MCP/CLI invocation, implement worker transport, release-aware lookup, comparison and verification evidence.
 
 ## Phase 4 — R16 → R25 Upgrade Assessment
-
-Implement:
-
-`inventory → release diff → impact analysis → risk → remediation recommendation → verification plan → report`
-
-**MVP exit:** a representative customization repository produces a traceable upgrade assessment.
+Release diff, correlation engine, risk classification, remediation recommendations, verification plan and reporting.
 
 ## Phase 5 — Orchestration
-
-Integrate agentic-suite for DAG execution, parallel analysis, gates, approvals and pause/resume. Introduce AgentVerse only where its runtime capabilities provide clear value.
+Integrate agentic-suite for DAG execution, parallel analysis, gates, approvals and pause/resume. Introduce AgentVerse where useful.
 
 ## Phase 6 — T24Tools Surface
-
-Expose workflow/results through a user-facing integration surface without moving T24Tools source into this repository.
+Expose workflow/results through a user-facing integration surface.
 
 ## Post-MVP
-
-1. approved automated remediation
-2. test/regression intelligence
-3. runtime/log intelligence
-4. ADC zero-downtime upgrade planning
-5. bank knowledge packs
-6. solution architect workflows
-7. controlled migration factory
-8. enterprise deployment
-
-Prefer one vertical slice over broad infrastructure.
+Approved remediation; regression intelligence; runtime/log intelligence; ADC zero-downtime planning; bank knowledge packs; solution-architect workflows; controlled migration factory; enterprise deployment.
