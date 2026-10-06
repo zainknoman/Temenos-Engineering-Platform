@@ -1,17 +1,16 @@
 # Next Phase
 
-Phase 12 is complete.
+Phase 13 is complete.
 
-## Phase 13 — Live Cutover Evidence & Incident Control
+## Phase 14 — Cutover Command Center & Scenario Simulation
 
 Next priorities:
 
-- live operation result ingestion
-- streaming health/ADC/runtime telemetry
-- evidence updates during cutover
-- incident and rollback trigger policy
-- immutable audit trail
-- operator timeline and handoff
-- reconciliation after cutover
+- scenario simulation and what-if analysis
+- cutover readiness replay
+- dependency-aware blast-radius simulation
+- multi-environment cutover comparison
+- richer operator handoff and timeline views
+- production-grade persistence/event streaming adapters
 
 Production execution must remain external and approval-gated.

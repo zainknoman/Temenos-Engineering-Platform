@@ -18,7 +18,7 @@ The platform owns cross-system correlation, evidence, risk, workflow policy, rem
 
 R16 -> R25 Upgrade & Migration Intelligence
 
-Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> Remediation -> Verification/Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Human Approval -> External Operations
+Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> Remediation -> Verification/Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Human Approval -> External Operations -> Live Cutover Evidence & Incident Control
 
 ## Implemented phases
 
@@ -34,6 +34,7 @@ Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> R
 - Phase 10 — ADC zero-downtime intelligence
 - Phase 11 — Upgrade Control Tower
 - Phase 12 — Execution Adapter & Operations Integration
+- Phase 13 — Live Cutover Evidence & Incident Control
 
 ## Safety
 
@@ -43,6 +44,6 @@ The platform does not autonomously migrate production data, deploy production so
 
 GitHub Actions workflow .github/workflows/cli.yml runs npm test on pushes and pull requests.
 
-## Phase 12
+## Phase 13
 
-External operation contracts cover health checks, migration validation, runtime/log collection, deployment, rollback and ADC traffic operations. The platform produces requests and evidence; external systems execute actions.
+Live cutover operations are observed through external result ingestion and telemetry. The platform evaluates incidents, maintains a verifiable audit chain and reconciles expected versus observed outcomes. It never autonomously executes or rolls back production operations.
