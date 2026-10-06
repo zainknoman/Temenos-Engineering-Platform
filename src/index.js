@@ -17,3 +17,6 @@ export*from'./workflows/assessment.js';
 export*from'./workflows/orchestrated-assessment.js';
 export*from'./adapters/regression.js';
 export*from'./regression/intelligence.js';
+export*from'./adapters/runtime-migration.js';
+export*from'./runtime-migration/intelligence.js';
+export*from'./surfaces/runtime-migration.js';

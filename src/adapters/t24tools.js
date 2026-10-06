@@ -1,4 +1,5 @@
 import { buildT24ToolsDashboard, exportT24ToolsReport } from '../surfaces/t24tools.js';
+import { buildRuntimeMigrationSurface } from '../surfaces/runtime-migration.js';
 
 export class T24ToolsAdapter {
   constructor({ platformName = 'Temenos-Engineering-Platform', schemaVersion = '1.0' } = {}) {
@@ -7,7 +8,7 @@ export class T24ToolsAdapter {
   }
 
   capabilities() {
-    return ['getUpgradeDashboard', 'getArtifactRiskList', 'getEvidence', 'getRemediationChecklist', 'getRegressionStatus', 'exportReport'];
+    return ['getUpgradeDashboard', 'getArtifactRiskList', 'getEvidence', 'getRemediationChecklist', 'getRegressionStatus', 'getRuntimeMigrationStatus', 'exportReport'];
   }
 
   getUpgradeDashboard(input) {
@@ -28,6 +29,10 @@ export class T24ToolsAdapter {
 
   getRegressionStatus(input) {
     return this.getUpgradeDashboard(input).regression;
+  }
+
+  getRuntimeMigrationStatus(input) {
+    return buildRuntimeMigrationSurface(input);
   }
 
   exportReport(input) {
