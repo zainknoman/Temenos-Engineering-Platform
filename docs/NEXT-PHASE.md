@@ -1,16 +1,16 @@
 # Next Phase
 
-Phase 13 is complete.
+Phase 14 is complete.
 
-## Phase 14 — Cutover Command Center & Scenario Simulation
+## Phase 15 — Production Integration & Evidence Federation
 
 Next priorities:
 
-- scenario simulation and what-if analysis
-- cutover readiness replay
-- dependency-aware blast-radius simulation
-- multi-environment cutover comparison
-- richer operator handoff and timeline views
-- production-grade persistence/event streaming adapters
+- persistent event-store adapter
+- durable evidence/event correlation
+- streaming telemetry connectors
+- multi-bank/multi-project scenario baselines
+- richer T24Tools command-center presentation
+- controlled integration with AgentVerse/agentic-suite execution providers
 
 Production execution must remain external and approval-gated.
