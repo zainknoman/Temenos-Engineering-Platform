@@ -19,19 +19,29 @@ This repository is the integration and product layer for five independent system
 
 The first flagship capability is **R16 → R25 Upgrade & Migration Intelligence**.
 
+## Phase 3
+The platform now has a real Temenos-Skills execution boundary:
+
+`Platform → Temenos-Skills adapter → local Python worker → existing Temenos-Skills pipeline → structured result + evidence`
+
+Implemented:
+- release-aware field lookup
+- business-rule search
+- release comparison
+- artifact field verification
+- provider/runtime failure handling
+- evidence/provenance
+
+Configure `TEMENOS_SKILLS_HOME` to point at your local Temenos-Skills checkout.
+
 ## Principles
 - Keep all five source repositories independent and untouched.
 - Integrate through adapters and stable contracts.
-- Use Capability → Adapter → Transport → Runtime for external execution.
+- Use Capability → Adapter → Transport → Runtime.
 - Evidence before automation.
 - Require human approval before destructive or production-impacting actions.
 - Preserve provenance.
 - Prefer deterministic analysis and verification over unsupported AI guesses.
-
-## Phase 2
-The current foundation supports:
-
-RepoMind export → normalized artifacts/dependencies → persisted R16 → R25 assessment run
 
 ## Documentation
 - [Architecture](docs/ARCHITECTURE.md)
@@ -39,19 +49,12 @@ RepoMind export → normalized artifacts/dependencies → persisted R16 → R25 
 - [Runtime Modes](docs/RUNTIME-MODES.md)
 - [Adapter Transports](docs/ADAPTER-TRANSPORTS.md)
 - [Implementation Plan](docs/PLAN.md)
+- [Phase 3 Temenos-Skills](docs/PHASE-3-TEMENOS-SKILLS.md)
 - [MVP](docs/MVP.md)
 - [Contracts](docs/CONTRACTS.md)
 - [Repository Boundaries](docs/REPOSITORY-BOUNDARIES.md)
 - [Decision Log](docs/DECISIONS.md)
 - [R16 → R25 Workflow](docs/workflows/R16-R25-UPGRADE-ASSESSMENT.md)
-- [Phase 1 Discovery](docs/PHASE-1-DISCOVERY.md)
-- [Capability Matrix](docs/CAPABILITY-MATRIX.md)
-- [Integration Adapters](docs/INTEGRATION-ADAPTERS.md)
-- [Common Data Model](docs/DATA-MODEL.md)
-- [Workflow Design](docs/WORKFLOW-DESIGN.md)
-- [Integration Risks](docs/INTEGRATION-RISKS.md)
-- [MVP Backlog](docs/MVP-BACKLOG.md)
-- [Source Repository Baselines](docs/SOURCE-REPOSITORY-BASELINES.md)
 - [Next Phase](docs/NEXT-PHASE.md)
 
 ## Non-goals

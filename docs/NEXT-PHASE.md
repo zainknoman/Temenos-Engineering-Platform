@@ -1,16 +1,18 @@
 # Next Phase
 
-## Phase 3 — Temenos-Skills Adapter
+## Phase 4 — R16 → R25 Upgrade Assessment
 
-Phase 2 is complete as a local, read-only foundation.
+Phase 3 is complete. The next step is to combine the two real evidence sources.
 
 ### Work items
-1. validate current Temenos-Skills MCP/CLI surface
-2. define worker process contract
-3. implement release-aware lookup adapter
-4. capture Temenos evidence/provenance
-5. add provider failure/timeout handling
-6. connect release analysis to the R16 → R25 workflow
+1. ingest RepoMind customization inventory
+2. run Temenos-Skills R23/R25 release comparison
+3. correlate changed fields/apps/jBC names with bank artifacts
+4. classify upgrade risk
+5. generate remediation recommendations
+6. build verification plan
+7. persist evidence-backed findings
+8. produce an assessment report
 
 ### Deliverable
-A real Temenos-Skills execution adapter that answers release-specific questions and returns structured evidence without exposing provider-specific runtime details to platform workflows.
+A real R16/R25 upgrade assessment that explains **what changed in Temenos, what the bank has, why the artifact is impacted, what should be changed, and how the change should be verified**.

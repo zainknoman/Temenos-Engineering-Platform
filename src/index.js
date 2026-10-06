@@ -1,1 +1,1 @@
-export*from'./core/contracts.js';export*from'./core/store.js';export*from'./adapters/registry.js';export*from'./adapters/repomind.js';export*from'./runtime/execution.js';export*from'./normalizers/repomind.js';export*from'./workflows/assessment.js';
+export*from'./core/contracts.js';export*from'./core/store.js';export*from'./adapters/registry.js';export*from'./adapters/repomind.js';export*from'./adapters/temenos-skills.js';export*from'./runtime/execution.js';export*from'./normalizers/repomind.js';export*from'./workflows/assessment.js';

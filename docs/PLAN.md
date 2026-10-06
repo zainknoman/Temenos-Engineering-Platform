@@ -7,15 +7,20 @@ Documentation, boundaries, contracts, adapter interfaces, workflow state and evi
 Capability matrix, responsibility map, adapter strategy, normalized data model, R16 → R25 workflow, risks, backlog, source baselines, execution/runtime architecture, runtime modes and adapter transports.
 
 ## Phase 2 — Platform Foundation + RepoMind Adapter — COMPLETE
-Implemented runtime skeleton; Project, Run, Artifact, Dependency, Finding and Evidence contracts; JSON persistence; adapter registry; execution registry; read-only RepoMind export adapter; T24 artifact normalization; representative fixture; first R16 → R25 assessment workflow; tests for normalization, provenance and persistence.
+Runtime skeleton; Project/Run/Artifact/Dependency/Finding/Evidence contracts; JSON persistence; adapter registry; execution registry; read-only RepoMind export adapter; T24 artifact normalization; fixture; first assessment workflow; tests.
 
-**Exit:** a local platform run can ingest a RepoMind export and persist normalized evidence-backed artifacts without changing RepoMind.
+## Phase 3 — Temenos-Skills Adapter — COMPLETE
+Implemented a real local worker/CLI boundary with release-aware field lookup, business-rule search, R23→R25 comparison, artifact field verification, provider failure handling and evidence provenance.
 
-## Phase 3 — Temenos-Skills Adapter
-Validate live MCP/CLI invocation, implement worker transport, release-aware lookup, comparison and verification evidence.
+**Exit:** the platform can invoke the existing Temenos-Skills knowledge pipeline without copying its source or making the platform depend on Claude Code as its only runtime.
 
 ## Phase 4 — R16 → R25 Upgrade Assessment
-Release diff, correlation engine, risk classification, remediation recommendations, verification plan and reporting.
+- release diff
+- correlation engine
+- risk classification
+- remediation recommendations
+- verification plan
+- report generation
 
 ## Phase 5 — Orchestration
 Integrate agentic-suite for DAG execution, parallel analysis, gates, approvals and pause/resume. Introduce AgentVerse where useful.
