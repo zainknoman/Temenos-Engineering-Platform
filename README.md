@@ -1,85 +1,75 @@
 # Temenos Engineering Platform
 
-> AI-powered engineering intelligence for Temenos Transact — understand, analyze, generate, validate, troubleshoot and plan upgrades using release-specific knowledge and bank-specific code intelligence.
+Integration and workflow platform for Temenos engineering intelligence.
 
-This repository is the integration and product layer for five independent systems. It does not clone, replace, or absorb them.
+## Purpose
 
-| System | Responsibility |
-|---|---|
-| Temenos-Skills | Temenos Transact ground truth, release-aware knowledge, generation and verification |
-| T24Tools | T24 engineering cockpit and user-facing utilities |
-| RepoMind | Bank/customization repository intelligence |
-| agentic-suite | Workflow orchestration, DAG scheduling, approvals and engineering phases |
-| AgentVerse | Generic agent runtime, execution, sandboxing, memory and provider infrastructure |
+The platform connects independent engineering capabilities without merging their source repositories:
 
-## Vision
-1. **What should Temenos do?** — Temenos-Skills.
-2. **What does this bank actually have?** — RepoMind.
-3. **What should we do next, and can we prove it?** — this platform.
+- **Temenos-Skills** — Temenos release/domain knowledge, field/rule lookup and verification
+- **RepoMind** — bank customization repository intelligence
+- **agentic-suite** — optional workflow/conductor integration
+- **AgentVerse** — optional generic agent/runtime provider
+- **T24Tools** — presentation/cockpit surface
 
-The first flagship capability is **R16 → R25 Upgrade & Migration Intelligence**.
+The platform owns cross-system correlation, evidence, risk, workflow policy and reports.
 
-## Phase 4 — R16 → R25 Upgrade Assessment
+## Flagship capability
 
-The platform now combines RepoMind inventory with Temenos-Skills release evidence:
+**R16 → R25 Upgrade & Migration Intelligence**
 
-RepoMind inventory → release diff → artifact correlation → risk → remediation → verification → report
+    Bank Repository
+        ↓
+    RepoMind Inventory
+        ↓
+    Normalized T24 Artifacts
+        ↓
+    Temenos-Skills Release Evidence
+        ↓
+    Correlation + Impact Graph
+        ↓
+    Risk Classification
+        ↓
+    Remediation Recommendation
+        ↓
+    Human Approval
+        ↓
+    Verification + Report
+        ↓
+    T24Tools Cockpit
 
-Implemented:
-- release-aware correlation by application, field, position and jBC/component mapping
-- Critical/High/Medium/Low risk classification
-- evidence-backed findings and limitations
-- remediation recommendations
-- target-release verification plans
-- machine-readable + Markdown assessment report
-- graceful handling when the configured Temenos-Skills release baseline is unavailable
+## Implemented phases
 
-The workflow remains read-only. It does **not** rewrite bank source, execute production migration, or switch ADC traffic.
+- Phase 1 — architecture/discovery
+- Phase 2 — platform contracts, store and RepoMind boundary
+- Phase 3 — Temenos-Skills adapter
+- Phase 4 — release-aware correlation, risk, evidence, remediation, verification and report
+- Phase 5 — native DAG orchestration and safe agentic-suite bridge
+- **Phase 6 — T24Tools presentation read model and export contract**
 
-> Important: the current Temenos-Skills release map may not contain every historical release. If R16 is not available in the configured knowledge DB, the assessment records that limitation instead of pretending an R16 diff exists.
+## Phase 6
 
-## Phase 3
-The platform has a real Temenos-Skills execution boundary:
+The T24Tools boundary is intentionally read-only. Use `T24ToolsAdapter` to expose:
 
-Platform → Temenos-Skills adapter → local Python worker → existing Temenos-Skills pipeline → structured result + evidence
+- upgrade dashboard
+- artifact risk list
+- evidence
+- remediation/verification checklist
+- Markdown report export
 
-Implemented:
-- release-aware field lookup
-- business-rule search
-- release comparison
-- artifact field verification
-- provider/runtime failure handling
-- evidence/provenance
-
-Configure TEMENOS_SKILLS_HOME to point at your local Temenos-Skills checkout.
+T24Tools remains the UI/cockpit; the platform remains the domain/workflow layer.
 
 ## Principles
-- Keep all five source repositories independent and untouched.
-- Integrate through adapters and stable contracts.
-- Use Capability → Adapter → Transport → Runtime.
-- Evidence before automation.
-- Require human approval before destructive or production-impacting actions.
-- Preserve provenance.
-- Prefer deterministic analysis and verification over unsupported AI guesses.
 
-## Documentation
-- [Architecture](docs/ARCHITECTURE.md)
-- [Execution Architecture](docs/EXECUTION-ARCHITECTURE.md)
-- [Runtime Modes](docs/RUNTIME-MODES.md)
-- [Adapter Transports](docs/ADAPTER-TRANSPORTS.md)
-- [Implementation Plan](docs/PLAN.md)
-- [Phase 3 Temenos-Skills](docs/PHASE-3-TEMENOS-SKILLS.md)
-- [MVP](docs/MVP.md)
-- [Contracts](docs/CONTRACTS.md)
-- [Repository Boundaries](docs/REPOSITORY-BOUNDARIES.md)
-- [Decision Log](docs/DECISIONS.md)
-- [R16 → R25 Workflow](docs/workflows/R16-R25-UPGRADE-ASSESSMENT.md)
-- [Next Phase](docs/NEXT-PHASE.md)
+1. Keep source repositories independent.
+2. Integrate through capability adapters and explicit transports.
+3. Preserve evidence and provenance.
+4. Require human approval before consequential actions.
+5. Do not invent release evidence.
+6. Keep credentials in runtime environments, never in platform contracts.
 
-## Non-goals
-This project will not copy source from the five repositories, replace official Temenos tooling, become another generic coding-agent framework, or autonomously migrate production systems.
+## Tests
 
-## Roadmap
-MVP: RepoMind adapter → Temenos-Skills adapter → R16 → R25 impact workflow → agentic-suite orchestration → unified report → T24Tools surface.
+Run `npm test`.
 
-Post-MVP: approved remediation, regression intelligence, runtime/log intelligence, ADC zero-downtime planning, bank knowledge packs, solution-architect workflows, migration factory and enterprise deployment.
+Phase 6 adds three tests for the T24Tools read model and adapter.

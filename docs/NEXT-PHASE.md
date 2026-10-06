@@ -1,18 +1,23 @@
 # Next Phase
 
-Phase 5 is complete.
+Phase 6 is complete.
 
-## Phase 6 — T24Tools Surface
+## Phase 7 — Approved Remediation Workflows
 
-Expose the platform assessment through T24Tools:
-- upgrade dashboard
-- artifact risk list
-- evidence viewer
-- remediation and verification checklist
-- exportable report
+Build approval-gated remediation workflows around findings:
 
-The platform remains the domain/workflow layer; T24Tools remains the presentation/cockpit layer.
+- generate candidate code/config changes
+- attach exact evidence and affected artifacts
+- require human approval before applying changes
+- verify compile/build and focused regression tests
+- preserve before/after provenance and rollback information
 
-R16 → R25 is only as evidence-complete as the configured Temenos-Skills release knowledge. If R16 is unavailable, the platform must report the missing baseline and must not infer an R16 diff from R23/R25 data.
+No production migration or ADC traffic switching is automatic.
 
-After Phase 6: approved remediation workflows, regression intelligence, then ADC zero-downtime upgrade planning. Production-impacting actions remain approval-gated.
+## Later
+
+- regression intelligence
+- ADC zero-downtime upgrade planning
+- migration execution controls
+
+R16 → R25 remains evidence-complete only when the configured Temenos-Skills release knowledge contains the required source baseline. If R16 is unavailable, the platform must report the limitation rather than infer the diff.
