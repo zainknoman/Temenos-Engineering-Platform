@@ -30,6 +30,7 @@ Bank Repository -> RepoMind Inventory -> Temenos-Skills Release Evidence -> Corr
 - Phase 6 — T24Tools presentation read model and export contract
 - Phase 7 — approval-gated remediation workflow and CI
 - Phase 8 — regression intelligence and T24Tools regression status
+- Phase 9 — runtime, migration and deployment-readiness intelligence
 
 ## Phase 7
 
@@ -53,3 +54,7 @@ GitHub Actions workflow .github/workflows/cli.yml runs npm test on pushes and pu
 ## Phase 8
 
 Regression intelligence maps upgrade findings to focused tests, compares pre/post behavior, captures build and runtime/log evidence, and exposes regression status through T24Tools. It does not autonomously execute production tests or switch ADC traffic.
+
+## Phase 9
+
+Runtime & Migration Intelligence builds a controlled execution plan, validates migration rehearsal evidence, analyzes runtime logs, compares pre/post runtime behavior, and produces a deployment-readiness gate. It does not autonomously execute production migration or deployment.
