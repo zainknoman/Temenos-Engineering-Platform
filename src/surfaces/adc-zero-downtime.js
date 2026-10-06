@@ -1,0 +1,4 @@
+import {buildAdcZeroDowntimeAssessment} from '../adc-zero-downtime/intelligence.js';
+export function buildAdcZeroDowntimeSurface({project,assessment=null,topology=null,compatibilityGate=null,sessionSafetyGate=null,checkpoints=[],trafficPlan=null,rollbackPlan=null}){
+ return {schemaVersion:'1.0',surface:'T24Tools',type:'ADC_ZERO_DOWNTIME_COCKPIT',project:{id:project.id,name:project.name,sourceRelease:project.sourceRelease,targetRelease:project.targetRelease},topology,compatibilityGate,sessionSafetyGate,checkpoints,trafficPlan,rollbackPlan,assessment:assessment?buildAdcZeroDowntimeAssessment({project,...assessment}):null,safety:{humanApprovalRequired:true,autonomousTrafficSwitch:false,externalExecutionRequired:true}};
+}

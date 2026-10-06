@@ -31,12 +31,11 @@ Bank Repository -> RepoMind Inventory -> Temenos-Skills Release Evidence -> Corr
 - Phase 7 — approval-gated remediation workflow and CI
 - Phase 8 — regression intelligence and T24Tools regression status
 - Phase 9 — runtime, migration and deployment-readiness intelligence
+- Phase 10 — ADC zero-downtime upgrade intelligence
 
-## Phase 7
+## Safety
 
-The remediation layer creates evidence-linked candidate changes, requires explicit human approval, captures rollback information before application, and records verification results.
-
-It does not invent exact Temenos source replacements and does not directly mutate production or switch ADC traffic.
+The platform does not autonomously migrate production data, deploy production software or switch ADC traffic. Consequential execution remains external and explicitly approval-gated.
 
 ## CI
 
@@ -51,10 +50,6 @@ GitHub Actions workflow .github/workflows/cli.yml runs npm test on pushes and pu
 5. Do not invent release evidence.
 6. Keep credentials in runtime environments, never in platform contracts.
 
-## Phase 8
+## Phase 10
 
-Regression intelligence maps upgrade findings to focused tests, compares pre/post behavior, captures build and runtime/log evidence, and exposes regression status through T24Tools. It does not autonomously execute production tests or switch ADC traffic.
-
-## Phase 9
-
-Runtime & Migration Intelligence builds a controlled execution plan, validates migration rehearsal evidence, analyzes runtime logs, compares pre/post runtime behavior, and produces a deployment-readiness gate. It does not autonomously execute production migration or deployment.
+ADC Zero-Downtime Upgrade Intelligence models active/standby topology, health checks, target compatibility, dual-run readiness, session and transaction safety, migration checkpoints, controlled traffic drain/switch planning, rollback readiness and a human approval gate. Actual ADC traffic switching remains external and explicitly approved.

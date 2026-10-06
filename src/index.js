@@ -20,3 +20,6 @@ export*from'./regression/intelligence.js';
 export*from'./adapters/runtime-migration.js';
 export*from'./runtime-migration/intelligence.js';
 export*from'./surfaces/runtime-migration.js';
+export*from'./adapters/adc-zero-downtime.js';
+export*from'./adc-zero-downtime/intelligence.js';
+export*from'./surfaces/adc-zero-downtime.js';
