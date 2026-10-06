@@ -6,7 +6,7 @@ Integration and workflow platform for Temenos engineering intelligence.
 
 The platform connects independent engineering capabilities without merging their source repositories:
 
-- Temenos-Skills — Temenos release/domain knowledge, field/rule lookup and verification
+- Temenos-Skills — Temenos release/domain knowledge
 - RepoMind — bank customization repository intelligence
 - agentic-suite — optional workflow/conductor integration
 - AgentVerse — optional generic agent/runtime provider
@@ -18,21 +18,22 @@ The platform owns cross-system correlation, evidence, risk, workflow policy, rem
 
 R16 -> R25 Upgrade & Migration Intelligence
 
-Bank Repository -> RepoMind Inventory -> Temenos-Skills Release Evidence -> Correlation + Impact Graph -> Risk -> Remediation -> Human Approval -> Approved Remediation + Rollback -> Verification + Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Final Human Approval -> External Cutover
+Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> Remediation -> Verification/Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Human Approval -> External Operations
 
 ## Implemented phases
 
 - Phase 1 — architecture/discovery
-- Phase 2 — platform contracts, store and RepoMind boundary
+- Phase 2 — contracts, store and RepoMind boundary
 - Phase 3 — Temenos-Skills adapter
-- Phase 4 — release-aware correlation, risk, evidence, remediation, verification and report
-- Phase 5 — native DAG orchestration and safe agentic-suite bridge
-- Phase 6 — T24Tools presentation read model and export contract
-- Phase 7 — approval-gated remediation workflow and CI
+- Phase 4 — release-aware upgrade intelligence
+- Phase 5 — orchestration
+- Phase 6 — T24Tools surface
+- Phase 7 — approval-gated remediation
 - Phase 8 — regression intelligence
-- Phase 9 — runtime, migration and deployment-readiness intelligence
-- Phase 10 — ADC zero-downtime upgrade intelligence
+- Phase 9 — runtime/migration intelligence
+- Phase 10 — ADC zero-downtime intelligence
 - Phase 11 — Upgrade Control Tower
+- Phase 12 — Execution Adapter & Operations Integration
 
 ## Safety
 
@@ -42,6 +43,6 @@ The platform does not autonomously migrate production data, deploy production so
 
 GitHub Actions workflow .github/workflows/cli.yml runs npm test on pushes and pull requests.
 
-## Phase 11
+## Phase 12
 
-The Upgrade Control Tower unifies upgrade, regression, runtime/migration and ADC readiness into one auditable go/no-go model with a single cutover timeline. READY_FOR_APPROVAL still requires explicit final human approval before external deployment or ADC switching.
+External operation contracts cover health checks, migration validation, runtime/log collection, deployment, rollback and ADC traffic operations. The platform produces requests and evidence; external systems execute actions.

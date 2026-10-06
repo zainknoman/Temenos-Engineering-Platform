@@ -1,17 +1,17 @@
 # Next Phase
 
-Phase 11 is complete.
+Phase 12 is complete.
 
-## Phase 12 — Execution Adapter & Operations Integration
+## Phase 13 — Live Cutover Evidence & Incident Control
 
-The next phase should connect the control tower to real external execution adapters without moving execution authority into the platform:
+Next priorities:
 
-- health-check and ADC telemetry adapter
-- migration/data-validation adapter
-- runtime/log collector adapter
-- deployment/rollback adapter
-- approval/audit integration
-- live cutover evidence updates
-- operational incident/rollback triggers
+- live operation result ingestion
+- streaming health/ADC/runtime telemetry
+- evidence updates during cutover
+- incident and rollback trigger policy
+- immutable audit trail
+- operator timeline and handoff
+- reconciliation after cutover
 
-All consequential actions must remain external, explicit and approval-gated. The platform remains the evidence, policy and go/no-go control layer.
+Production execution must remain external and approval-gated.
