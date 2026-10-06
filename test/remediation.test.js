@@ -14,9 +14,9 @@ test('Phase 7 creates evidence-linked remediation candidates',()=>{
  assert.deepEqual(plan.changes[0].evidenceIds,['evidence:1']);
  assert.equal(plan.rollback.required,true);
 });
-test('Phase 7 requires explicit human approval before application',()=>{
+test('Phase 7 requires explicit human approval before application',async()=>{
  const plan=createRemediationPlan({project,findings:[finding],artifacts:[artifact],evidence});
- assert.throws(()=>applyApprovedRemediation(plan,{applyChange:async()=>true,captureRollback:async()=> 'rollback/1'}),/APPROVED/);
+ await assert.rejects(()=>applyApprovedRemediation(plan,{applyChange:async()=>true,captureRollback:async()=> 'rollback/1'}),/APPROVED/);
  const approved=approveRemediationPlan(plan,{approver:'human-review'});
  assert.equal(approved.status,'APPROVED');
  assert.equal(approved.approvedBy,'human-review');
