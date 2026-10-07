@@ -3,7 +3,7 @@ const byId=id=>document.getElementById(id);
 function text(id,value){const n=byId(id);if(n)n.textContent=value??'—'}
 function statusClass(value){return String(value??'UNVERIFIED').toLowerCase().replaceAll('_','-')}
 function renderList(id,values,empty){const n=byId(id);if(!n)return;n.replaceChildren();if(!values.length){const li=document.createElement('li');li.textContent=empty;n.append(li);return}for(const value of values){const li=document.createElement('li');li.textContent=value;n.append(li)}}
-export function render(report){
+function render(report){
  text(ids.project,report.project?.name);text(ids.release,report.project?report.project.sourceRelease+' → '+report.project.targetRelease:'—');text(ids.environment,report.project?.environment);text(ids.status,report.summary?.status);text(ids.repomind,report.adapters?.repomind?.status);text(ids.skills,report.adapters?.temenosSkills?.status);
  text(ids.inventory,report.inventory?report.inventory.files+' files / '+report.inventory.dependencies+' dependencies':'Not loaded');text(ids.blockers,report.summary?.blockers?.length??0);text(ids.warnings,report.summary?.warnings?.length??0);
  const counts=report.summary?.counts??{};for(const key of ['findings','risk','remediation','regression','migration','adc','certification','evidence'])text(ids[key],counts[key]??0);
@@ -11,8 +11,17 @@ export function render(report){
  const status=byId(ids.status);if(status)status.className='status '+statusClass(report.summary?.status);for(const id of [ids.repomind,ids.skills]){const n=byId(id);if(n)n.className='pill '+statusClass(n.textContent)}
  renderList('blocker-list',report.summary?.blockers??[],'No blockers reported.');renderList('warning-list',report.summary?.warnings??[],'No warnings reported.');return report;
 }
-export async function loadJsonFile(file){if(!file)return null;return render(JSON.parse(await file.text()))}
-export async function loadFromUrl(url){const response=await fetch(url);if(!response.ok)throw new Error('HTTP '+response.status);return render(await response.json())}
+async function loadJsonFile(file){if(!file)throw new Error('No report file selected.');const report=JSON.parse(await file.text());if(!report||typeof report!=='object'||!report.summary||!report.project)throw new Error('Report JSON is missing project or summary data.');return render(report)}
+async function loadFromUrl(url){const response=await fetch(url);if(!response.ok)throw new Error('HTTP '+response.status);return render(await response.json())}
 function setMessage(message,error=false){const n=byId('message');if(n){n.textContent=message;n.dataset.error=error?'true':'false'}}
-function loadDemo(){render({schemaVersion:'1.0',generatedAt:new Date().toISOString(),project:{id:'bank-r16-r25',name:'Bank R16 to R25',sourceRelease:'R16',targetRelease:'R25',environment:'sit'},adapters:{repomind:{status:'UNVERIFIED'},temenosSkills:{status:'UNVERIFIED'}},inventory:null,summary:{status:'READY_WITH_WARNINGS',blockers:[],warnings:['Load a RepoMind report to inspect the bank repository.'],counts:{findings:0,risk:0,remediation:0,regression:0,migration:0,adc:0,certification:0,evidence:0}},safety:{productionExecution:false,autonomousExecution:false,requireHumanApproval:true}});setMessage('Demo read model loaded. No bank data is embedded in the UI.')}
-document.addEventListener('DOMContentLoaded',()=>{byId('report-file')?.addEventListener('change',e=>loadJsonFile(e.target.files?.[0]).then(()=>setMessage('Loaded report JSON.')).catch(err=>setMessage('Invalid report JSON: '+err.message,true)));byId('demo-button')?.addEventListener('click',loadDemo);byId('refresh-button')?.addEventListener('click',()=>{const url=new URLSearchParams(window.location.search).get('report');if(url)loadFromUrl(url).then(()=>setMessage('Loaded report from '+url)).catch(err=>setMessage('Unable to load report: '+err.message,true))});const url=new URLSearchParams(window.location.search).get('report');if(url)loadFromUrl(url).catch(err=>setMessage('Unable to load report: '+err.message,true));else loadDemo()});
+function loadDemo(){render({schemaVersion:'1.0',generatedAt:new Date().toISOString(),project:{id:'bank-r16-r25',name:'Bank R16 to R25',sourceRelease:'R16',targetRelease:'R25',environment:'sit'},adapters:{repomind:{status:'UNVERIFIED'},temenosSkills:{status:'UNVERIFIED'}},inventory:null,summary:{status:'READY_WITH_WARNINGS',blockers:[],warnings:['Load a RepoMind report to inspect the bank repository.'],counts:{findings:0,risk:0,remediation:0,regression:0,migration:0,adc:0,certification:0,evidence:0}},safety:{productionExecution:false,autonomousExecution:false,requireHumanApproval:true}});setMessage('Demo read model loaded. Choose “Load report JSON” to load a real report.')}
+function initialize(){
+ const fileInput=byId('report-file');
+ if(fileInput)fileInput.addEventListener('change',async event=>{try{await loadJsonFile(event.target.files?.[0]);setMessage('Loaded report JSON successfully.')}catch(error){setMessage('Unable to load report JSON: '+error.message,true)}});
+ byId('demo-button')?.addEventListener('click',loadDemo);
+ byId('refresh-button')?.addEventListener('click',()=>{const url=new URLSearchParams(window.location.search).get('report');if(!url){setMessage('No report URL supplied. Use ?report=<url> or Load report JSON.',true);return}loadFromUrl(url).then(()=>setMessage('Loaded report from '+url)).catch(err=>setMessage('Unable to load report: '+err.message,true))});
+ const url=new URLSearchParams(window.location.search).get('report');
+ if(url)loadFromUrl(url).then(()=>setMessage('Loaded report from '+url)).catch(err=>setMessage('Unable to load report: '+err.message,true));
+ else loadDemo();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initialize,{once:true});else initialize();
