@@ -1,10 +1,10 @@
-import { runR16R25Assessment } from './workflows/assessment.js';
-import { buildRegressionTestPack, comparePrePostBehavior, buildRegressionAssessment, buildRegressionEvidence } from './regression/intelligence.js';
-import { buildExecutionPlan, validateMigrationRehearsal, analyzeRuntimeLogs, compareRuntimeBehavior, buildReadinessGate, buildRuntimeMigrationAssessment, collectExecutionEvidence } from './runtime-migration/intelligence.js';
-import { buildAdcTopology, buildCompatibilityGate, buildSessionSafetyGate, buildMigrationCheckpoints, buildTrafficSwitchPlan, buildRollbackPlan, buildAdcReadinessGate, buildAdcZeroDowntimeAssessment } from './adc-zero-downtime/intelligence.js';
-import { buildUpgradeControlTower, evaluateGoNoGo, buildControlTowerEvidence } from './control-tower/intelligence.js';
-import { buildCertificationPlan, recordCertificationResult, evaluateCertification, buildProductionSignoff, buildReleaseManifest } from './certification/intelligence.js';
-import { buildReleaseCandidate, validateReleaseCandidate } from './certification/release.js';
+import { runR16R25Assessment } from '../workflows/assessment.js';
+import { buildRegressionTestPack, comparePrePostBehavior, buildRegressionAssessment, buildRegressionEvidence } from '../regression/intelligence.js';
+import { buildExecutionPlan, validateMigrationRehearsal, analyzeRuntimeLogs, compareRuntimeBehavior, buildReadinessGate, buildRuntimeMigrationAssessment, collectExecutionEvidence } from '../runtime-migration/intelligence.js';
+import { buildAdcTopology, buildCompatibilityGate, buildSessionSafetyGate, buildMigrationCheckpoints, buildTrafficSwitchPlan, buildRollbackPlan, buildAdcReadinessGate, buildAdcZeroDowntimeAssessment } from '../adc-zero-downtime/intelligence.js';
+import { buildUpgradeControlTower, evaluateGoNoGo, buildControlTowerEvidence } from '../control-tower/intelligence.js';
+import { buildCertificationPlan, recordCertificationResult, evaluateCertification, buildProductionSignoff, buildReleaseManifest } from '../certification/intelligence.js';
+import { buildReleaseCandidate, validateReleaseCandidate } from '../certification/release.js';
 
 export const FLAGSHIP_PROJECT = Object.freeze({
   id: 'bank-r16-r25-demo',
