@@ -1,1 +1,30 @@
-export async function runLoadScenario({iterations=1,operation=async()=>null}={}){const started=Date.now();const results=[];for(let i=0;i<iterations;i++)results.push(await operation(i));const elapsedMs=Date.now()-started;return{iterations,elapsedMs,averageMs:iterations?elapsedMs/iterations:0,completed:results.length,results};} export function evaluateScaleBudget({measurement,budget={maxAverageMs:1000,minThroughputPerSecond:1}={}}){const throughput=measurement?.elapsedMs?measurement.iterations/(measurement.elapsedMs/1000):0;return{throughputPerSecond:throughput,averageMs:measurement?.averageMs??null,passed:(measurement?.averageMs??Infinity)<=budget.maxAverageMs&&throughput>=budget.minThroughputPerSecond,budget};}
+export async function runLoadScenario({iterations=1,operation=async()=>null}={}) {
+  const started = Date.now();
+  const results = [];
+  for (let i = 0; i < iterations; i += 1) results.push(await operation(i));
+  const elapsedMs = Date.now() - started;
+  return {
+    iterations,
+    elapsedMs,
+    averageMs: iterations ? elapsedMs / iterations : 0,
+    completed: results.length,
+    results
+  };
+}
+
+export function evaluateScaleBudget({
+  measurement,
+  budget = { maxAverageMs: 1000, minThroughputPerSecond: 1 }
+} = {}) {
+  const throughput = measurement?.elapsedMs
+    ? measurement.iterations / (measurement.elapsedMs / 1000)
+    : 0;
+  return {
+    throughputPerSecond: throughput,
+    averageMs: measurement?.averageMs ?? null,
+    passed:
+      (measurement?.averageMs ?? Infinity) <= budget.maxAverageMs &&
+      throughput >= budget.minThroughputPerSecond,
+    budget
+  };
+}
