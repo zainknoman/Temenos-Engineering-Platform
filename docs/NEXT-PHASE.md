@@ -1,35 +1,55 @@
-# Next Phase
+# Phase 21 Release Status
 
-## Phase 21 — Productization + Real-World Validation
+Phase 21 — Productization + Real-World Validation — **COMPLETE**.
 
-### Current Work: 21.4 — Real Adapter Onboarding
+## Completed product surface
 
-Phase 21.1–21.3 are implemented on `main`. The active slice is 21.4: connect the existing RepoMind and Temenos-Skills adapter contracts to deterministic onboarding/readiness checks without enabling production execution.
+- CLI foundation and project/workspace model.
+- RepoMind and Temenos-Skills adapter onboarding/readiness.
+- Stable report/read model and JSON output.
+- Read-only browser Command Center.
+- Deterministic flagship R16 → R25 workflow.
+- Upgrade, regression, migration, ADC, control-tower and certification CLI demo surfaces.
+- Product documentation, safety boundaries and troubleshooting guidance.
+- Human GO/NO-GO gate remains explicit.
 
-### 21.4 implementation
+## Flagship workflow
 
-- [x] Validate RepoMind export/input shape.
-- [x] Discover adapter identity, transport, version and capabilities.
-- [x] Validate required capabilities before provider calls.
-- [x] Add RepoMind readiness/health check.
-- [x] Add Temenos-Skills worker readiness/health check using the existing injected runner contract.
-- [x] Normalize RepoMind artifacts, dependencies and evidence through the existing adapter.
-- [x] Preserve offline/deterministic worker tests.
-- [x] Add deterministic integration fixture.
-- [x] Keep onboarding read-only and production execution disabled.
+Run:
 
-### Completion rule
+    node bin/tep.js demo r16-r25
 
-21.4 is complete only after the focused adapter tests, the complete test suite and CI all pass.
+Approve the deterministic human gate:
 
-### After 21.4
+    node bin/tep.js demo r16-r25 --approval APPROVED
 
-Proceed to **21.5 — Report / Read API**.
+The default run must remain NO_GO until approval is supplied.
 
-The next product surface should expose stable read models for project summary, findings/risk, remediation, regression, migration, ADC, certification and evidence/audit history.
+## CLI maintenance rule
 
-### CLI help maintenance rule
+Every future CLI command or subcommand must update:
 
-Every new CLI command or subcommand must be added to `src/cli.js`, its focused tests, and the **CLI Help** tab in `docs/index.html` in the same implementation change.
+1. src/cli.js
+2. focused tests
+3. the CLI Help tab in docs/index.html
 
-Production execution remains disabled by default and explicitly human-approval gated.
+in the same implementation change.
+
+## Safety
+
+Production execution and autonomous production execution remain disabled by design. TEP can analyze, plan, correlate, verify and produce readiness decisions, but external production deployment, migration and ADC traffic switching remain explicitly gated external actions.
+
+## Next product direction
+
+Phase 21 is the productization checkpoint. Future work should focus on real-provider onboarding and non-production bank validation rather than adding another parallel intelligence framework.
+
+Potential future work includes:
+
+- real RepoMind export ingestion from a bank repository;
+- real Temenos-Skills R16/R25 release comparison;
+- real evidence providers;
+- HTTP/API hosting around the existing read model;
+- controlled external execution providers;
+- pilot validation against a sanitized non-production bank estate.
+
+These are future phases, not prerequisites for Phase 21 completion.
