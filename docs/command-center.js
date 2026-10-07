@@ -12,18 +12,30 @@ function render(report){
  renderList('blocker-list',report.summary?.blockers??[],'No blockers reported.');renderList('warning-list',report.summary?.warnings??[],'No warnings reported.');return report;
 }
 function normalizeReport(raw){
- const report=raw?.report&&typeof raw.report==='object'?raw.report:raw;
+ let report=raw?.report&&typeof raw.report==='object'?raw.report:raw;
  if(!report||typeof report!=='object')throw new Error('Report JSON must contain a JSON object.');
+ if(!report.project&&report.action==='inventory'&&report.inventory&&report.projectId){
+   const repository=report.repository??{};
+   report={
+     schemaVersion:'1.0',
+     generatedAt:new Date().toISOString(),
+     project:{id:report.projectId,name:repository.projectName||report.projectId,status:'ACTIVE',sourceRelease:report.sourceRelease||'—',targetRelease:'—',environment:'—'},
+     adapters:{repomind:{status:'READY'},temenosSkills:{status:'UNVERIFIED'}},
+     inventory:{profile:repository,files:report.inventory.files,dependencies:report.inventory.dependencies,languages:report.inventory.languages,limitations:report.inventory.limitations||[]},
+     summary:{status:'READY_WITH_WARNINGS',blockers:[],warnings:['Loaded from TEP inventory output; release target and assessment sections are not included.'],counts:{findings:0,risk:0,remediation:0,regression:0,migration:0,adc:0,certification:0,evidence:0}},
+     safety:{productionExecution:false,autonomousExecution:false,requireHumanApproval:true}
+   };
+ }
  if(!report.project||typeof report.project!=='object')throw new Error('Report JSON is missing project data.');
  if(!report.summary||typeof report.summary!=='object')throw new Error('Report JSON is missing summary data.');
  if(!report.project.name||!report.project.sourceRelease||!report.project.targetRelease)throw new Error('Report JSON has incomplete project data.');
  if(!report.summary.status||!report.summary.counts||typeof report.summary.counts!=='object')throw new Error('Report JSON has incomplete summary data.');
  return report;
 }
-async function loadJsonFile(file){if(!file)throw new Error('No report file selected.');let raw;try{raw=JSON.parse((await file.text()).replace(/^\\uFEFF/,''));}catch(error){throw new Error('Invalid JSON: '+error.message)}return render(normalizeReport(raw))}
+async function loadJsonFile(file){if(!file)throw new Error('No report file selected.');let raw;try{raw=JSON.parse((await file.text()).replace(/^\uFEFF/,''));}catch(error){throw new Error('Invalid JSON: '+error.message)}return render(normalizeReport(raw))}
 async function loadFromUrl(url){const response=await fetch(url);if(!response.ok)throw new Error('HTTP '+response.status);return render(normalizeReport(await response.json()))}
 function setMessage(message,error=false){const n=byId('message');if(n){n.textContent=message;n.dataset.error=error?'true':'false'}}
-function loadDemo(){render({schemaVersion:'1.0',generatedAt:new Date().toISOString(),project:{id:'bank-r16-r25',name:'Bank R16 to R25',sourceRelease:'R16',targetRelease:'R25',environment:'sit'},adapters:{repomind:{status:'UNVERIFIED'},temenosSkills:{status:'UNVERIFIED'}},inventory:null,summary:{status:'READY_WITH_WARNINGS',blockers:[],warnings:['Load a RepoMind report to inspect the bank repository.'],counts:{findings:0,risk:0,remediation:0,regression:0,migration:0,adc:0,certification:0,evidence:0}},safety:{productionExecution:false,autonomousExecution:false,requireHumanApproval:true}});setMessage('Demo read model loaded. Choose “Load report JSON” to load a real report.')}
+function loadDemo(){render({schemaVersion:'1.0',generatedAt:new Date().toISOString(),project:{id:'bank-r16-r25',name:'Bank R16 to R25',sourceRelease:'R16',targetRelease:'R25',environment:'sit'},adapters:{repomind:{status:'UNVERIFIED'},temenosSkills:{status:'UNVERIFIED'}},inventory:null,summary:{status:'READY_WITH_WARNINGS',blockers:[],warnings:['Load a RepoMind report to inspect the bank repository.'],counts:{findings:0,risk:0,remediation:0,regression:0,migration:0,adc:0,certification:0,evidence:0}},safety:{productionExecution:false,autonomousExecution:false,requireHumanApproval:true}});setMessage('Demo read model loaded. Choose “Load report JSON” to load a real report.') }
 function initialize(){
  const fileInput=byId('report-file');
  if(fileInput)fileInput.addEventListener('change',async event=>{try{await loadJsonFile(event.target.files?.[0]);setMessage('Loaded report JSON successfully.')}catch(error){setMessage('Unable to load report JSON: '+error.message,true)}});
