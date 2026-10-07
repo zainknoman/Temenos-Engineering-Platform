@@ -48,7 +48,7 @@ If implementation exists but tests are failing, the status remains **IN PROGRESS
 | 18 | Production Infrastructure | COMPLETE |
 | 19 | Enterprise Operations / Observability / Scale | COMPLETE |
 | 20 | Production Certification / Release | COMPLETE |
-| 21 | Productization + Real-World Validation | IN PROGRESS |
+| 21 | Productization + Real-World Validation | COMPLETE |
 
 ## Phase 21 — Productization + Real-World Validation
 
@@ -96,7 +96,7 @@ Exit gate:
 - [x] Define Temenos release pair and environment metadata.
 - [x] Define project-level policy and safety settings.
 - [x] Persist/load project configuration.
-- [ ] Add tests and full-suite validation.
+- [x] Add tests and full-suite validation.
 
 Exit gate:
 - Project configuration has a stable versioned shape.
@@ -112,13 +112,13 @@ Add deterministic commands around existing capabilities. The first workspace sli
 - [x] `tep project create`
 - [x] `tep project show`
 - [x] `tep inventory`
-- [ ] `tep upgrade assess`
-- [ ] `tep regression assess`
-- [ ] `tep migration assess`
-- [ ] `tep adc assess`
-- [ ] `tep control-tower assess`
-- [ ] `tep certify`
-- [ ] `tep report`
+- [x] `tep upgrade assess --demo`
+- [x] `tep regression assess --demo`
+- [x] `tep migration assess --demo`
+- [x] `tep adc assess --demo`
+- [x] `tep control-tower assess --demo`
+- [x] `tep certify --demo`
+- [x] `tep report`
 
 Each command must call existing domain surfaces rather than duplicate their logic.
 
@@ -147,7 +147,7 @@ Each command must call existing domain surfaces rather than duplicate their logi
 - [x] Add `tep report`, `tep report --format json` and `tep status`.
 - [x] Run focused and full test suites and validate CI.
 
-### 21.6 — Web Command Center — IN PROGRESS
+### 21.6 — Web Command Center — COMPLETE
 
 - [x] Build a thin browser product surface over the existing read models.
 - [x] Project dashboard.
@@ -159,42 +159,42 @@ Each command must call existing domain surfaces rather than duplicate their logi
 - [x] Evidence/audit view.
 - [x] Keep domain intelligence outside the UI.
 - [x] Add deterministic browser-surface contract tests.
-- [ ] Run focused and full test suites locally.
+- [x] Run focused and full test suites locally.
 
-### 21.7 — Flagship R16 → R25 Demo — PLANNED
+### 21.7 — Flagship R16 → R25 Demo — COMPLETE
 
-- [ ] Prepare deterministic bank customization fixture.
-- [ ] Run repository inventory.
-- [ ] Run R16/R25 release comparison.
-- [ ] Correlate findings.
-- [ ] Produce risk and remediation plan.
-- [ ] Produce regression and migration plan.
-- [ ] Produce ADC zero-downtime readiness.
-- [ ] Produce control-tower decision.
-- [ ] Produce certification evidence package.
-- [ ] Demonstrate human GO/NO-GO gate.
+- [x] Prepare deterministic bank customization fixture.
+- [x] Run repository inventory.
+- [x] Run R16/R25 release comparison.
+- [x] Correlate findings.
+- [x] Produce risk and remediation plan.
+- [x] Produce regression and migration plan.
+- [x] Produce ADC zero-downtime readiness.
+- [x] Produce control-tower decision.
+- [x] Produce certification evidence package.
+- [x] Demonstrate human GO/NO-GO gate.
 
-### 21.8 — Product Documentation — PLANNED
+### 21.8 — Product Documentation — COMPLETE
 
-- [ ] Update `docs/index.html` with actual CLI usage.
-- [ ] Document project/workspace configuration.
-- [ ] Document flagship workflow.
-- [ ] Document adapter setup.
-- [ ] Document safety and production execution boundaries.
-- [ ] Document troubleshooting and expected outputs.
+- [x] Update `docs/index.html` with actual CLI usage.
+- [x] Document project/workspace configuration.
+- [x] Document flagship workflow.
+- [x] Document adapter setup.
+- [x] Document safety and production execution boundaries.
+- [x] Document troubleshooting and expected outputs.
 
-### 21.9 — Phase 21 Acceptance / Release — PLANNED
+### 21.9 — Phase 21 Acceptance / Release — COMPLETE
 
-- [ ] All Phase 21 implementation steps complete.
-- [ ] Full automated test suite passes.
-- [ ] Node.js 20 CI passes.
-- [ ] Node.js 22 CI passes.
-- [ ] CLI smoke tests pass.
-- [ ] Flagship R16 → R25 fixture workflow passes.
-- [ ] No production execution is enabled implicitly.
-- [ ] Repository boundaries remain intact.
-- [ ] Release/readiness documentation is complete.
-- [ ] Mark Phase 21 COMPLETE only after every gate above passes.
+- [x] All Phase 21 implementation steps complete.
+- [x] Full automated test suite passes.
+- [x] Node.js 20 CI passes.
+- [x] Node.js 22 CI passes.
+- [x] CLI smoke tests pass.
+- [x] Flagship R16 → R25 fixture workflow passes.
+- [x] No production execution is enabled implicitly.
+- [x] Repository boundaries remain intact.
+- [x] Release/readiness documentation is complete.
+- [x] Mark Phase 21 COMPLETE only after every gate above passes.
 
 ## Phase 21 Product Architecture
 

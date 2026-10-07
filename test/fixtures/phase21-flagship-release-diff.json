@@ -1,0 +1,36 @@
+{
+  "summary": {
+    "applicationsChanged": 2,
+    "fieldsRemoved": 1,
+    "fieldsMoved": 1,
+    "jbcRenamed": 1
+  },
+  "apps": {
+    "CUSTOMER": {
+      "fields_removed": [
+        "ID.TYPE.NO"
+      ],
+      "fields_moved": [
+        [
+          "NATIONALITY",
+          20,
+          35
+        ]
+      ],
+      "jbc_renamed": [
+        [
+          "NATIONALITY",
+          "OLD.NATIONALITY",
+          "NATIONALITY.CODE"
+        ]
+      ]
+    },
+    "FUNDS": {
+      "fields_added": [
+        "NEW.FIELD"
+      ]
+    }
+  },
+  "apps_added": [],
+  "apps_removed": []
+}

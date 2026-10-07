@@ -1,0 +1,68 @@
+{
+  "project": {
+    "name": "bank-r16-r25-demo",
+    "source": "phase21-flagship-fixture"
+  },
+  "toolVersion": "fixture-1",
+  "files": [
+    {
+      "path": "CUSTOMER/PK.CUSTOMER.b",
+      "extension": ".b",
+      "language": "jBC",
+      "lines": 42,
+      "application": "CUSTOMER",
+      "metadata": {
+        "application": "CUSTOMER",
+        "fields": [
+          "NATIONALITY",
+          "ID.TYPE.NO"
+        ]
+      }
+    },
+    {
+      "path": "hooks/CustomerHook.java",
+      "extension": ".java",
+      "language": "Java",
+      "lines": 80,
+      "application": "CUSTOMER",
+      "metadata": {
+        "application": "CUSTOMER",
+        "fields": [
+          "NATIONALITY"
+        ]
+      }
+    },
+    {
+      "path": "FUNDS/PK.FUNDS.b",
+      "extension": ".b",
+      "language": "jBC",
+      "lines": 31,
+      "application": "FUNDS",
+      "metadata": {
+        "application": "FUNDS",
+        "fields": [
+          "ACCOUNT.NO",
+          "NEW.FIELD"
+        ]
+      }
+    }
+  ],
+  "imports": [
+    {
+      "from": "hooks/CustomerHook.java",
+      "to": "CUSTOMER/PK.CUSTOMER.b",
+      "kind": "REFERENCES",
+      "confidence": "high"
+    },
+    {
+      "from": "CUSTOMER/PK.CUSTOMER.b",
+      "to": "FUNDS/PK.FUNDS.b",
+      "kind": "REFERENCES",
+      "confidence": "medium"
+    }
+  ],
+  "stats": {
+    "files": 3,
+    "imports": 2
+  }
+}
