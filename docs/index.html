@@ -18,7 +18,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted)}
 </style>
 </head>
 <body>
-<header><div class="wrap"><nav><div class="brand">Temenos <span>Engineering Platform</span></div><div class="links"><a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#use">How to use</a><a href="#features">Features</a><a href="#upgrade">R16→R25</a><a href="#next">Next</a></div></nav></div></header>
+<header><div class="wrap"><nav><div class="brand">Temenos <span>Engineering Platform</span></div><div class="links"><a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#use">How to use</a><a href="#features">Features</a><a href="#upgrade">R16→R25</a><a href="#cli-help">CLI Help</a><a href="#next">Next</a></div></nav></div></header>
 
 <main>
 <section class="hero"><div class="wrap">
@@ -98,6 +98,21 @@ npm test</code></pre></div>
 <div class="check"><b>07</b><div><strong>Cut over</strong><br>Hand execution to the bank's approved external deployment/ADC tooling.</div></div>
 <div class="check"><b>08</b><div><strong>Observe</strong><br>Collect post-cutover telemetry, evidence and reconciliation results.</div></div>
 </div></section>
+
+<section id="cli-help"><div class="wrap"><h2>CLI Help</h2><p class="lead">The <code>tep</code> CLI is the product entry point for deterministic project and engineering workflows. Run it from the repository with <code>node bin/tep.js</code>, or expose it globally for local development with <code>npm link</code>.</p><div class="safe"><b>Current CLI commands</b><br>These commands are kept synchronized with the executable CLI. When a new command is added, update this tab in the same implementation change.</div><table style="margin-top:18px"><thead><tr><th>Command</th><th>Purpose</th><th>Example</th></tr></thead><tbody><tr><td><code>tep --help</code></td><td>Show CLI help.</td><td><code>node bin/tep.js --help</code></td></tr><tr><td><code>tep --version</code></td><td>Show the platform version.</td><td><code>node bin/tep.js --version</code></td></tr><tr><td><code>tep project create</code></td><td>Create a versioned project/workspace configuration.</td><td><code>node bin/tep.js project create --id bank-r16-r25 --name "Bank R16 to R25" --source-release R16 --target-release R25</code></td></tr><tr><td><code>tep project show</code></td><td>Read and display the current project/workspace configuration.</td><td><code>node bin/tep.js project show</code></td></tr><tr><td><code>tep inventory</code></td><td>Inspect a RepoMind export and summarize indexed files, dependencies and languages.</td><td><code>node bin/tep.js inventory --input .\repomind.json --config .\tep.project.json</code></td></tr></tbody></table><h3 style="margin-top:28px">Project create options</h3><pre><code>--id &lt;id&gt;
+--name &lt;name&gt;
+--source-release &lt;release&gt;
+--target-release &lt;release&gt;
+--repository &lt;url&gt;
+--path &lt;file&gt;
+--environment &lt;name&gt;
+--config &lt;file&gt;</code></pre><h3>Other options</h3><pre><code>--config &lt;file&gt;
+--input &lt;file&gt;
+-h, --help
+-v, --version</code></pre><h3>Typical workflow</h3><pre><code>node bin/tep.js --help
+node bin/tep.js project create --id bank-r16-r25 --name "Bank R16 to R25" --source-release R16 --target-release R25
+node bin/tep.js project show
+node bin/tep.js inventory --input .\repomind.json</code></pre></div></section>
 
 <section id="next"><div class="wrap"><h2>What's next?</h2><p class="lead">The foundation is now stable. The next phase should move from “platform implementation” to “usable product + real-bank validation”.</p>
 <div class="grid">

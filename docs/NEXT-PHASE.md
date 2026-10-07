@@ -18,6 +18,10 @@ The active implementation slice is **21.2 — Project / Workspace Model**.
 - JSON persistence/load support
 - Deterministic unit tests
 
+### CLI help maintenance rule
+
+Every new CLI command or subcommand must be added to `src/cli.js`, its focused tests, and the **CLI Help** tab in `docs/index.html` in the same implementation change. This keeps the browser help page synchronized with the executable CLI.
+
 ### Completion rule
 
 21.2 must not be marked COMPLETE until the new tests and the complete existing test suite pass in CI.

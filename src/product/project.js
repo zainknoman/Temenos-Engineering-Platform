@@ -58,5 +58,10 @@ export async function saveProjectConfig(filePath, input) {
 
 export async function loadProjectConfig(filePath) {
   const config = JSON.parse(await readFile(filePath, 'utf8'));
-  return createProjectConfig(config);
+  return createProjectConfig({
+    ...config.project,
+    version: config.version,
+    source: config.source,
+    policy: config.policy
+  });
 }
