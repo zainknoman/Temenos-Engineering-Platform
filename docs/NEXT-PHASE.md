@@ -2,38 +2,34 @@
 
 ## Phase 21 — Productization + Real-World Validation
 
-### Current Work: 21.2 — Project / Workspace Model
+### Current Work: 21.4 — Real Adapter Onboarding
 
-Phase 21.1 CLI Foundation is complete: `tep` entry point, help/version contract, focused tests, and full CI validation.
+Phase 21.1–21.3 are implemented on `main`. The active slice is 21.4: connect the existing RepoMind and Temenos-Skills adapter contracts to deterministic onboarding/readiness checks without enabling production execution.
 
-The active implementation slice is **21.2 — Project / Workspace Model**.
+### 21.4 implementation
 
-### 21.2 implementation
-
-- Stable project identity and versioned workspace configuration
-- Local or Git repository source configuration
-- Explicit Temenos source/target release pair
-- Environment metadata
-- Project-level safety policy
-- JSON persistence/load support
-- Deterministic unit tests
-
-### CLI help maintenance rule
-
-Every new CLI command or subcommand must be added to `src/cli.js`, its focused tests, and the **CLI Help** tab in `docs/index.html` in the same implementation change. This keeps the browser help page synchronized with the executable CLI.
+- [x] Validate RepoMind export/input shape.
+- [x] Discover adapter identity, transport, version and capabilities.
+- [x] Validate required capabilities before provider calls.
+- [x] Add RepoMind readiness/health check.
+- [x] Add Temenos-Skills worker readiness/health check using the existing injected runner contract.
+- [x] Normalize RepoMind artifacts, dependencies and evidence through the existing adapter.
+- [x] Preserve offline/deterministic worker tests.
+- [x] Add deterministic integration fixture.
+- [x] Keep onboarding read-only and production execution disabled.
 
 ### Completion rule
 
-21.2 must not be marked COMPLETE until the new tests and the complete existing test suite pass in CI.
+21.4 is complete only after the focused adapter tests, the complete test suite and CI all pass.
 
-### After 21.2
+### After 21.4
 
-Proceed to **21.3 — Product CLI Workflows**, beginning with:
+Proceed to **21.5 — Report / Read API**.
 
-1. `tep project create`
-2. `tep project show`
-3. `tep inventory`
+The next product surface should expose stable read models for project summary, findings/risk, remediation, regression, migration, ADC, certification and evidence/audit history.
 
-All workflows must reuse existing TEP domain engines and adapters.
+### CLI help maintenance rule
+
+Every new CLI command or subcommand must be added to `src/cli.js`, its focused tests, and the **CLI Help** tab in `docs/index.html` in the same implementation change.
 
 Production execution remains disabled by default and explicitly human-approval gated.

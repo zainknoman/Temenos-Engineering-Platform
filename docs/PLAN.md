@@ -89,7 +89,7 @@ Exit gate:
 - Existing module imports remain compatible.
 - Full test suite passes.
 
-### 21.2 — Project / Workspace Model — IN PROGRESS
+### 21.2 — Project / Workspace Model — COMPLETE
 
 - [x] Define stable project identity and workspace configuration.
 - [x] Define source/repository configuration.
@@ -105,7 +105,7 @@ Exit gate:
 - Production and autonomous execution remain disabled by default.
 - Full test suite passes.
 
-### 21.3 — Product CLI Workflows — IN PROGRESS
+### 21.3 — Product CLI Workflows — COMPLETE
 
 Add deterministic commands around existing capabilities. The first workspace slice is implemented; the remaining assessment/report commands are next.
 
@@ -122,14 +122,15 @@ Add deterministic commands around existing capabilities. The first workspace sli
 
 Each command must call existing domain surfaces rather than duplicate their logic.
 
-### 21.4 — Real Adapter Onboarding — PLANNED
+### 21.4 — Real Adapter Onboarding — COMPLETE
 
-- [ ] Validate a real RepoMind export/input.
-- [ ] Validate a real Temenos-Skills worker/input.
-- [ ] Define configuration and capability discovery.
-- [ ] Define provider health/readiness checks.
-- [ ] Preserve offline/mock adapters for tests.
-- [ ] Add integration tests using deterministic fixtures.
+- [x] Validate RepoMind export/input shape.
+- [x] Validate Temenos-Skills worker contract.
+- [x] Define adapter configuration and capability discovery.
+- [x] Define provider health/readiness checks.
+- [x] Preserve offline/deterministic adapters for tests.
+- [x] Add integration tests using deterministic fixtures.
+- [x] Keep onboarding read-only; no production execution is enabled.
 
 ### 21.5 — Report / Read API — PLANNED
 

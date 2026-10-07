@@ -1,0 +1,12 @@
+{
+  "project":{"name":"bank-customizations","source":"phase21-real-export"},
+  "toolVersion":"repomind-fixture-1",
+  "files":[
+    {"path":"CUSTOMER/PK.CUSTOMER.b","extension":".b","language":"jBC","lines":42},
+    {"path":"hooks/CustomerHook.java","extension":".java","language":"Java","lines":80}
+  ],
+  "imports":[
+    {"from":"hooks/CustomerHook.java","to":"CUSTOMER/PK.CUSTOMER.b","kind":"REFERENCES","confidence":"high"}
+  ],
+  "stats":{"files":2,"imports":1}
+}

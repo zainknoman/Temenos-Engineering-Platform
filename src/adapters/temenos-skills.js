@@ -27,6 +27,13 @@ export class TemenosSkillsAdapter{
    child.on('close',(code,signal)=>{clearTimeout(timer);done=true;if(code!==0)reject(new ProviderExecutionError('Temenos-Skills command failed',{code,signal,stderr:stderr.trim(),stdout:stdout.trim()}));else resolve(stdout.trim())});
   });
  }
+ async healthCheck({release='R25'}={}){
+  if(!this.skillsHome&&!this.runner)throw new ProviderUnavailableError('TEMENOS_SKILLS_HOME is not configured',{hint:'Set TEMENOS_SKILLS_HOME to the local Temenos-Skills repository.'});
+  const code='import json,sys; from pipeline.releases import open_release_db; c=open_release_db(sys.argv[1]); c.execute("SELECT 1").fetchone(); c.close(); print(json.dumps({"status":"READY","release":sys.argv[1]}))';
+  const out=await this.runner({code,argv:[release]});
+  const result=JSON.parse(out);
+  return{status:result.status??'READY',release,sourceSystem:'Temenos-Skills',transport:this.transport,mode:this.mode};
+ }
  async lookupField({release='R23',application,field}){
   if(!application||!field)throw new Error('application and field are required');
   const code=`import json,sys; from pipeline.releases import open_release_db; c=open_release_db(sys.argv[1]); r=c.execute("SELECT field_name,position,java_alias,field_type,mandatory,description FROM fields WHERE app=? AND UPPER(field_name)=UPPER(?)",(sys.argv[2],sys.argv[3])).fetchone(); c.close(); print(json.dumps(dict(zip(["field_name","position","java_alias","field_type","mandatory","description"],r))) if r else print("null")`;
