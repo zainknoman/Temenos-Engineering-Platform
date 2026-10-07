@@ -2,4 +2,5 @@
 
 import { main } from '../src/cli.js';
 
-process.exitCode = main();
+const exitCode = await main();
+process.exitCode = exitCode;
