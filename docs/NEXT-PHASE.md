@@ -1,17 +1,19 @@
 # Next Phase
 
-Phase 16 is implemented as enterprise integration boundaries.
+Phase 17 is implemented as the enterprise hardening baseline.
 
-## Phase 17 — Enterprise Hardening & Deployment
+## Phase 18 — Production Infrastructure Implementation
 
 Next priorities:
-- production dependency manifests and deployment profiles
-- PostgreSQL migrations/connection-pool implementation
-- Kafka/queue concrete provider packages
-- SSO/RBAC integration and audit-log export
-- evidence object storage and retention jobs
-- multi-region/HA and disaster-recovery design
-- command-center UI implementation in T24Tools
-- load/performance testing and operational dashboards
+- PostgreSQL connection pool and migrations
+- concrete Kafka/queue provider
+- object storage implementation
+- SSO/OIDC and enterprise RBAC
+- secret-manager integration
+- real retention workers
+- SIEM/audit export
+- concrete ADC/load-balancer and TAFJ/runtime connectors
+- HA deployment manifests
+- backup/restore automation
 
-Production execution must remain external, explicitly approval-gated and auditable.
+Production execution remains external, explicitly approval-gated and auditable.
