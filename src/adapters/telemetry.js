@@ -1,0 +1,1 @@
+export class TelemetryAdapter{constructor({collect=null}={}){this.collectHandler=collect;}capabilities(){return['collectTelemetry'];}async collectTelemetry(input={}){if(typeof this.collectHandler!=='function')return{status:'NOT_CONFIGURED',records:[],sourceSystem:input.sourceSystem??'external'};return this.collectHandler(input);}}

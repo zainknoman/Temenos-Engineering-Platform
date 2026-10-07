@@ -2,7 +2,7 @@ const U=v=>String(v??'').trim().toUpperCase();
 const list=v=>Array.isArray(v)?v:[];
 const ready=v=>['READY','PASSED','COMPLETED','HEALTHY','VALIDATED'].includes(U(v));
 const clone=v=>JSON.parse(JSON.stringify(v??null));
-
+const gateAliases={'control-tower':'controlTower','runtime-migration':'runtimeMigration'};
 export const SCENARIO_STATUS=Object.freeze(['BASELINE','READY','BLOCKED','SIMULATED']);
 export function buildCutoverScenario({project,controlTower=null,adc=null,runtimeMigration=null,regression=null,overrides={}}={}){
  if(!project?.id)throw new Error('project.id is required');
@@ -17,7 +17,8 @@ export function buildCutoverScenario({project,controlTower=null,adc=null,runtime
 }
 export function simulateCutoverScenario({scenario,changes={}}={}){
  if(!scenario?.id)throw new Error('scenario.id is required');
- const gates=scenario.gates.map(g=>({...g,status:U(changes.gates?.[g.id]??g.status)}));
+ const gateChanges=changes.gates??{};
+ const gates=scenario.gates.map(g=>{const alias=gateAliases[g.id];const value=gateChanges[g.id]??gateChanges[alias]??g.status;return{...g,status:U(value)};});
  const blockers=gates.filter(g=>!ready(g.status));
  const riskDelta=Number(changes.riskDelta??0);
  return{schemaVersion:'1.0',type:'CUTOVER_SCENARIO_RESULT',scenarioId:scenario.id,mode:'SIMULATION',status:blockers.length?'BLOCKED':'SIMULATED',gates,changes:clone(changes),risk:{baselineDelta:riskDelta,direction:riskDelta>0?'INCREASED':riskDelta<0?'DECREASED':'UNCHANGED'},recommendation:blockers.length?'DO_NOT_PROCEED_IN_SCENARIO':'SCENARIO_READY_FOR_REVIEW',safety:{productionExecution:false,autonomousExecution:false,humanApprovalRequired:true}};

@@ -1,0 +1,1 @@
+export class ExecutionProviderAdapter{constructor({execute=null}={}){this.executeHandler=execute;}capabilities(){return['executeExternal'];}async executeExternal(request={}){if(typeof this.executeHandler!=='function')return{status:'NOT_CONFIGURED',executionBoundary:'EXTERNAL',approvalRequired:true};return this.executeHandler(request);}}

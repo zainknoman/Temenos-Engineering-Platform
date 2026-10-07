@@ -2,13 +2,11 @@
 
 Integration and workflow platform for Temenos engineering intelligence.
 
-## Purpose
-
-The platform connects independent engineering capabilities without merging their source repositories:
+## Architecture
 
 - Temenos-Skills — Temenos release/domain knowledge
 - RepoMind — bank customization repository intelligence
-- agentic-suite — optional workflow/conductor integration
+- agentic-suite — workflow/conductor integration
 - AgentVerse — optional generic agent/runtime provider
 - T24Tools — presentation/cockpit surface
 
@@ -18,29 +16,28 @@ The platform owns cross-system correlation, evidence, risk, workflow policy, rem
 
 R16 -> R25 Upgrade & Migration Intelligence
 
-Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> Remediation -> Verification/Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Human Approval -> External Operations -> Live Cutover Evidence & Incident Control -> Cutover Command Center & Scenario Simulation
+Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> Remediation -> Verification/Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Human Approval -> External Operations -> Live Cutover Evidence -> Cutover Command Center -> Evidence Federation
 
 ## Implemented phases
 
-- Phase 1 — architecture/discovery
-- Phase 2 — contracts, store and RepoMind boundary
-- Phase 3 — Temenos-Skills adapter
-- Phase 4 — release-aware upgrade intelligence
-- Phase 5 — orchestration
-- Phase 6 — T24Tools surface
-- Phase 7 — approval-gated remediation
-- Phase 8 — regression intelligence
-- Phase 9 — runtime/migration intelligence
-- Phase 10 — ADC zero-downtime intelligence
-- Phase 11 — Upgrade Control Tower
-- Phase 12 — Execution Adapter & Operations Integration
-- Phase 13 — Live Cutover Evidence & Incident Control
-- Phase 14 — Cutover Command Center & Scenario Simulation
+1. architecture/discovery
+2. contracts/store/RepoMind boundary
+3. Temenos-Skills adapter
+4. release-aware upgrade intelligence
+5. orchestration
+6. T24Tools surface
+7. approval-gated remediation
+8. regression intelligence
+9. runtime/migration intelligence
+10. ADC zero-downtime intelligence
+11. Upgrade Control Tower
+12. Execution Adapter & Operations Integration
+13. Live Cutover Evidence & Incident Control
+14. Cutover Command Center & Scenario Simulation
+15. Production Integration & Evidence Federation
 
-## Safety
+## Phase 15
 
-The platform does not autonomously migrate production data, deploy production software, switch ADC traffic or execute rollback. Consequential execution remains external and explicitly approval-gated.
+Phase 15 provides normalized evidence, cross-system correlation, evidence snapshots, durable JSON event storage, telemetry/execution provider boundaries, scenario baselines and an expanded T24Tools command-center read model.
 
-## Phase 14
-
-Scenario simulation, readiness replay, dependency-aware blast-radius analysis, environment comparison, operator handoff and an event-stream boundary are available through the platform. See `docs/PHASE-14-CUTOVER-COMMAND-CENTER.md`.
+Production execution remains external and explicitly approval-gated. The default provider and telemetry adapters do not execute or connect to infrastructure.

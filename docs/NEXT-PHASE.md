@@ -1,16 +1,18 @@
 # Next Phase
 
-Phase 14 is complete.
+Phase 15 is complete.
 
-## Phase 15 — Production Integration & Evidence Federation
+## Phase 16 — Production Connectors & Enterprise Persistence
 
 Next priorities:
 
-- persistent event-store adapter
-- durable evidence/event correlation
-- streaming telemetry connectors
-- multi-bank/multi-project scenario baselines
-- richer T24Tools command-center presentation
-- controlled integration with AgentVerse/agentic-suite execution providers
+- PostgreSQL/event-bus production event store
+- Kafka/queue telemetry adapters
+- real ADC/load-balancer and runtime telemetry connectors
+- durable evidence retention and access control
+- multi-bank/multi-project tenancy
+- richer T24Tools command-center UI
+- controlled AgentVerse/agentic-suite execution-provider integration
+- operational metrics and SLA/SLO monitoring
 
-Production execution must remain external and approval-gated.
+Production execution must remain external, explicitly approval-gated and auditable.
