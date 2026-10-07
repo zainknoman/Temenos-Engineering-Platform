@@ -132,18 +132,20 @@ Each command must call existing domain surfaces rather than duplicate their logi
 - [x] Add integration tests using deterministic fixtures.
 - [x] Keep onboarding read-only; no production execution is enabled.
 
-### 21.5 — Report / Read API — PLANNED
+### 21.5 — Report / Read API — IN PROGRESS
 
-- [ ] Define stable product read models.
-- [ ] Expose project summary.
-- [ ] Expose findings/risk.
-- [ ] Expose remediation.
-- [ ] Expose regression.
-- [ ] Expose migration.
-- [ ] Expose ADC.
-- [ ] Expose certification.
-- [ ] Expose evidence/audit timeline.
-- [ ] Add contract tests.
+- [x] Define stable product read models.
+- [x] Expose project summary.
+- [x] Expose findings/risk read-model slots.
+- [x] Expose remediation read-model slots.
+- [x] Expose regression read-model slots.
+- [x] Expose migration read-model slots.
+- [x] Expose ADC read-model slots.
+- [x] Expose certification read-model slots.
+- [x] Expose evidence/audit timeline read-model slots.
+- [x] Add focused contract tests.
+- [x] Add `tep report`, `tep report --format json` and `tep status`.
+- [ ] Run focused and full test suites and validate CI.
 
 ### 21.6 — Web Command Center — PLANNED
 
