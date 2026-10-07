@@ -105,13 +105,13 @@ Exit gate:
 - Production and autonomous execution remain disabled by default.
 - Full test suite passes.
 
-### 21.3 — Product CLI Workflows — PLANNED
+### 21.3 — Product CLI Workflows — IN PROGRESS
 
-Add deterministic commands around existing capabilities:
+Add deterministic commands around existing capabilities. The first workspace slice is implemented; the remaining assessment/report commands are next.
 
-- [ ] `tep project create`
-- [ ] `tep project show`
-- [ ] `tep inventory`
+- [x] `tep project create`
+- [x] `tep project show`
+- [x] `tep inventory`
 - [ ] `tep upgrade assess`
 - [ ] `tep regression assess`
 - [ ] `tep migration assess`
