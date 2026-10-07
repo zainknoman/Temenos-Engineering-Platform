@@ -10,13 +10,13 @@ Integration and workflow platform for Temenos engineering intelligence.
 - AgentVerse — optional generic agent/runtime provider
 - T24Tools — presentation/cockpit surface
 
-The platform owns cross-system correlation, evidence, risk, workflow policy, remediation and reports.
+The platform owns cross-system correlation, evidence, risk, workflow policy, remediation, reports and enterprise integration contracts.
 
 ## Flagship capability
 
 R16 -> R25 Upgrade & Migration Intelligence
 
-Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> Remediation -> Verification/Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Human Approval -> External Operations -> Live Cutover Evidence -> Cutover Command Center -> Evidence Federation
+Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> Remediation -> Verification/Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Human Approval -> External Operations -> Live Cutover Evidence -> Cutover Command Center -> Evidence Federation -> Enterprise Persistence/Telemetry -> Controlled External Execution
 
 ## Implemented phases
 
@@ -35,9 +35,12 @@ Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> R
 13. Live Cutover Evidence & Incident Control
 14. Cutover Command Center & Scenario Simulation
 15. Production Integration & Evidence Federation
+16. Production Connectors & Enterprise Persistence
 
-## Phase 15
+## Phase 16
 
-Phase 15 provides normalized evidence, cross-system correlation, evidence snapshots, durable JSON event storage, telemetry/execution provider boundaries, scenario baselines and an expanded T24Tools command-center read model.
+Phase 16 adds PostgreSQL/event-bus persistence boundaries, ADC/runtime telemetry adapters, tenant and retention policy, operational SLO metrics, controlled external execution integration, and the V16 T24Tools command-center contract.
 
-Production execution remains external and explicitly approval-gated. The default provider and telemetry adapters do not execute or connect to infrastructure.
+Production execution remains external and explicitly approval-gated. Credentials and infrastructure clients remain outside the platform contracts.
+
+See docs/PHASES-FLOWCHART.md for developer-friendly flowcharts for every phase and docs/PHASE-16-PRODUCTION-CONNECTORS.md for the Phase 16 design.

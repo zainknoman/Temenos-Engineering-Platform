@@ -1,0 +1,4 @@
+export function buildTenantContext({tenantId,actorId,roles=[]}={}){if(!tenantId)throw new Error('tenantId is required');return{schemaVersion:'1.0',tenantId,actorId:actorId??null,roles:[...new Set(roles)],createdAt:new Date().toISOString()};}
+export function authorizeTenant({context,tenantId,projectTenantId,action='READ'}={}){const allowed=!!context?.tenantId&&context.tenantId===tenantId&&(!projectTenantId||projectTenantId===tenantId);return{allowed,action,tenantId,reason:allowed?'TENANT_MATCH':'TENANT_BOUNDARY_VIOLATION'};}
+export function filterTenantRecords(records=[],tenantId){return records.filter(r=>r.tenantId===tenantId);}
+export function buildRetentionPolicy({days=365,maxRecords=null,deleteAfterExport=false}={}){return{schemaVersion:'1.0',retentionDays:days,maxRecords,deleteAfterExport,destructiveCleanupRequiresApproval:true};}

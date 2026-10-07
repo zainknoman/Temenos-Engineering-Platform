@@ -1,0 +1,9 @@
+export class PostgresEventStore{
+  constructor({query,table='platform_events'}={}){this.query=query;this.table=table;}
+  _require(){if(typeof this.query!=='function')throw new Error('PostgresEventStore query handler is required');}
+  async append(event){this._require();const sql='INSERT INTO '+this.table+' (id,project_id,tenant_id,type,correlation_id,payload,occurred_at) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *';const r=await this.query(sql,[event.id,event.projectId??null,event.tenantId??null,event.type??'UNKNOWN',event.correlationId??null,JSON.stringify(event),event.occurredAt??new Date().toISOString()]);return r.rows?.[0]??event;}
+  async list(filter={}){this._require();const where=[],params=[];for(const [key,column] of [['projectId','project_id'],['tenantId','tenant_id'],['type','type'],['correlationId','correlation_id']]){if(filter[key]!=null){params.push(filter[key]);where.push(column+'=$'+params.length);}}const sql='SELECT * FROM '+this.table+(where.length?' WHERE '+where.join(' AND '):'')+' ORDER BY occurred_at ASC';const r=await this.query(sql,params);return r.rows??[];}
+  async count(filter={}){return(await this.list(filter)).length;}
+  capabilities(){return['appendEvent','listEvents','countEvents','postgresql'];}
+}
+export const POSTGRES_EVENT_SCHEMA='CREATE TABLE IF NOT EXISTS platform_events (id TEXT PRIMARY KEY, project_id TEXT, tenant_id TEXT NOT NULL, type TEXT NOT NULL, correlation_id TEXT, payload JSONB NOT NULL, occurred_at TIMESTAMPTZ NOT NULL); CREATE INDEX IF NOT EXISTS idx_platform_events_tenant_project ON platform_events(tenant_id,project_id); CREATE INDEX IF NOT EXISTS idx_platform_events_correlation ON platform_events(correlation_id);';

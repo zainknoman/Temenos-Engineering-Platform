@@ -1,5 +1,1 @@
-{
-  "name":"temenos-engineering-platform","version":"0.1.0","private":true,"type":"module",
-  "description":"Integration and workflow platform for Temenos engineering intelligence.",
-  "scripts":{"test":"node --test","start":"node src/index.js"}
-}
+{"name":"temenos-engineering-platform","version":"0.2.0","private":true,"type":"module","description":"Integration and workflow platform for Temenos engineering intelligence.","scripts":{"test":"node --test","start":"node src/index.js"}}

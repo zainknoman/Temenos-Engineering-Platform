@@ -1,18 +1,17 @@
 # Next Phase
 
-Phase 15 is complete.
+Phase 16 is implemented as enterprise integration boundaries.
 
-## Phase 16 — Production Connectors & Enterprise Persistence
+## Phase 17 — Enterprise Hardening & Deployment
 
 Next priorities:
-
-- PostgreSQL/event-bus production event store
-- Kafka/queue telemetry adapters
-- real ADC/load-balancer and runtime telemetry connectors
-- durable evidence retention and access control
-- multi-bank/multi-project tenancy
-- richer T24Tools command-center UI
-- controlled AgentVerse/agentic-suite execution-provider integration
-- operational metrics and SLA/SLO monitoring
+- production dependency manifests and deployment profiles
+- PostgreSQL migrations/connection-pool implementation
+- Kafka/queue concrete provider packages
+- SSO/RBAC integration and audit-log export
+- evidence object storage and retention jobs
+- multi-region/HA and disaster-recovery design
+- command-center UI implementation in T24Tools
+- load/performance testing and operational dashboards
 
 Production execution must remain external, explicitly approval-gated and auditable.
