@@ -87,3 +87,57 @@ test('inventory summarizes a RepoMind export without mutating it', async () => {
   assert.deepEqual(result.inventory.languages, ['Java', 'jBC']);
   assert.equal(result.inventory.limitations.length > 0, true);
 });
+
+
+test('report exposes a deterministic read model as JSON', async () => {
+  const dir = await tempDir();
+  const config = join(dir, 'project.json');
+  const input = join(dir, 'repomind.json');
+  await runCli([
+    'project', 'create', '--id', 'report-demo', '--name', 'Report Demo',
+    '--source-release', 'R16', '--target-release', 'R25',
+    '--path', input, '--config', config
+  ], { stdout: () => {} });
+
+  await import('node:fs/promises').then(fs => fs.writeFile(input, JSON.stringify({
+    project: { name: 'Bank Core' },
+    files: [
+      { path: 'CUSTOMER/CUSTOMER.b', extension: '.b', language: 'jBC' },
+      { path: 'hooks/CustomerHook.java', extension: '.java', language: 'Java' }
+    ],
+    imports: [{ from: 'hooks/CustomerHook.java', to: 'CUSTOMER/CUSTOMER.b' }]
+  }), 'utf8'));
+
+  const output = [];
+  const code = await runCli(['report', '--config', config, '--format', 'json'], {
+    stdout: value => output.push(value)
+  });
+
+  assert.equal(code, 0);
+  const result = JSON.parse(output[0]);
+  assert.equal(result.schemaVersion, '1.0');
+  assert.equal(result.project.id, 'report-demo');
+  assert.equal(result.project.targetRelease, 'R25');
+  assert.equal(result.inventory.files, 2);
+  assert.equal(result.adapters.repomind.status, 'READY');
+  assert.equal(result.safety.productionExecution, false);
+});
+
+test('status is a read-only alias for the project readiness report', async () => {
+  const dir = await tempDir();
+  const config = join(dir, 'project.json');
+  await runCli([
+    'project', 'create', '--id', 'status-demo', '--name', 'Status Demo',
+    '--source-release', 'R24', '--target-release', 'R25', '--config', config
+  ], { stdout: () => {} });
+
+  const output = [];
+  const code = await runCli(['status', '--config', config], {
+    stdout: value => output.push(value)
+  });
+
+  assert.equal(code, 0);
+  assert.match(output[0], /TEP Report — Status Demo/);
+  assert.match(output[0], /RepoMind: UNVERIFIED/);
+  assert.match(output[0], /Temenos-Skills: UNVERIFIED/);
+});
