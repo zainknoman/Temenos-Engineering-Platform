@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Temenos Engineering Platform — Guide</title>
+<meta name="description" content="Temenos Engineering Platform: upgrade, migration, ADC zero-downtime, regression, evidence, operations and certification intelligence.">
+<style>
+:root{--bg:#07111f;--panel:#0d1b2e;--panel2:#10243b;--text:#e8f0f8;--muted:#9eb0c4;--line:#24415d;--accent:#55c2ff;--accent2:#8ee6c5;--warn:#ffd166;--danger:#ff8b8b;--shadow:0 18px 55px rgba(0,0,0,.28);--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#06101c,#091827 35%,#07111f);color:var(--text);font:15px/1.65 Inter,Segoe UI,Arial,sans-serif}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:var(--max);margin:auto;padding:0 24px}
+header{position:sticky;top:0;z-index:10;background:rgba(7,17,31,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}nav{height:64px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:800;letter-spacing:.2px}.brand span{color:var(--accent)}nav .links{display:flex;gap:18px;flex-wrap:wrap;font-size:13px}
+.hero{padding:82px 0 60px}.eyebrow{display:inline-block;padding:5px 10px;border:1px solid #28516d;border-radius:999px;color:var(--accent2);font-size:12px;font-weight:700}.hero h1{font-size:clamp(38px,6vw,70px);line-height:1.02;margin:18px 0 18px;max-width:900px}.hero p{font-size:19px;color:var(--muted);max-width:850px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{padding:11px 16px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-weight:700}.btn.primary{background:#164d6b;border-color:#2b7da7}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,var(--panel),#0a1728);border:1px solid var(--line);border-radius:15px;padding:22px;box-shadow:var(--shadow)}.card h3{margin:0 0 8px}.card p{color:var(--muted);margin:0}.stat{font-size:30px;font-weight:800;color:var(--accent)}section{padding:58px 0}section h2{font-size:31px;margin:0 0 10px}section>p.lead{color:var(--muted);max-width:850px}.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 8px;font-size:11px;color:var(--muted);margin:3px}
+.diagram{overflow:auto;background:#06101b;border:1px solid var(--line);border-radius:15px;padding:24px}.flow{display:flex;align-items:stretch;gap:10px;min-width:950px}.node{flex:1;padding:17px;border:1px solid #2a526d;border-radius:12px;background:#0d2135;text-align:center}.node b{display:block;color:var(--accent)}.arrow{display:flex;align-items:center;color:var(--accent);font-size:22px}.layers{display:grid;grid-template-columns:1fr 1fr;gap:14px}.layer{padding:18px;border-left:4px solid var(--accent);background:var(--panel);border-radius:8px}.layer b{display:block;margin-bottom:4px}.muted{color:var(--muted)}
+pre{background:#050d16;border:1px solid var(--line);padding:18px;border-radius:12px;overflow:auto;color:#d9e7f5}code{font-family:Consolas,monospace}.check{display:grid;grid-template-columns:28px 1fr;gap:10px;margin:10px 0}.check strong{color:var(--accent2)}table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--accent)}td{color:#cbd8e5}.warning{border:1px solid #6b5721;background:#241e0c;padding:18px;border-radius:12px;color:#f8df9a}.safe{border:1px solid #285c4d;background:#0b241e;padding:18px;border-radius:12px;color:#bdebdc}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted)}
+@media(max-width:800px){.grid,.layers{grid-template-columns:1fr}nav .links{display:none}.hero{padding-top:55px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav><div class="brand">Temenos <span>Engineering Platform</span></div><div class="links"><a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#use">How to use</a><a href="#features">Features</a><a href="#upgrade">R16→R25</a><a href="#next">Next</a></div></nav></div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+<span class="eyebrow">v0.3.0 • 104 tests passing</span>
+<h1>Engineering intelligence for Temenos Transact.</h1>
+<p>A platform layer that connects bank-code intelligence, Temenos release knowledge, workflow orchestration, migration analysis, ADC zero-downtime planning, operational evidence and production certification into one controlled engineering lifecycle.</p>
+<div class="actions"><a class="btn primary" href="#use">Start here</a><a class="btn" href="#architecture">View architecture</a><a class="btn" href="https://github.com/zainknoman/Temenos-Engineering-Platform">GitHub repository</a></div>
+</div></section>
+
+<section id="overview"><div class="wrap"><h2>What is this application?</h2><p class="lead">This is currently a platform/library and integration layer rather than a finished browser application. Its job is to turn several specialist tools into one governed workflow. T24Tools is the user-facing cockpit/read-model layer; the platform supplies contracts, workflows, correlation, evidence, risk and approval boundaries.</p>
+<div class="grid">
+<div class="card"><div class="stat">104</div><h3>Automated tests</h3><p>Current test suite passes completely. This is the baseline before real-bank/provider onboarding.</p></div>
+<div class="card"><div class="stat">20</div><h3>Completed phases</h3><p>Architecture through production certification intelligence are implemented.</p></div>
+<div class="card"><div class="stat">0</div><h3>Autonomous production actions</h3><p>Production execution and autonomous execution remain disabled by design.</p></div>
+</div></div></section>
+
+<section id="architecture"><div class="wrap"><h2>System architecture</h2><p class="lead">The repositories remain separate. The platform integrates them through stable adapters instead of duplicating their knowledge.</p>
+<div class="diagram"><div class="flow">
+<div class="node"><b>Bank Repository</b>Customer, AA, Payments, Trade, jBC, Java, config</div><div class="arrow">→</div>
+<div class="node"><b>RepoMind</b>Inventory, symbols, dependencies, impact</div><div class="arrow">→</div>
+<div class="node"><b>Temenos-Skills</b>R16/R25 knowledge, fields, APIs, verification</div><div class="arrow">→</div>
+<div class="node"><b>TEP</b>Correlation, risk, workflows, evidence, gates</div><div class="arrow">→</div>
+<div class="node"><b>T24Tools</b>Cockpit, reports, operator read model</div>
+</div></div>
+<div class="layers" style="margin-top:16px">
+<div class="layer"><b>Temenos-Skills</b><span class="muted">Release-specific Temenos ground truth, lookup, generation and verification.</span></div>
+<div class="layer"><b>RepoMind</b><span class="muted">Bank customization/code ground truth, dependencies and impact candidates.</span></div>
+<div class="layer"><b>agentic-suite</b><span class="muted">Workflow sequencing, parallel tasks, gates and approvals.</span></div>
+<div class="layer"><b>AgentVerse</b><span class="muted">Optional generic runtime, agents, sandboxing and provider abstraction.</span></div>
+</div></div></section>
+
+<section id="use"><div class="wrap"><h2>How to use it today</h2><p class="lead">The important distinction: today you use the platform through its Node.js modules and adapters. The next product step is to expose these capabilities through a proper CLI and web command center.</p>
+<div class="grid">
+<div class="card"><h3>1. Install</h3><pre><code>git clone https://github.com/zainknoman/Temenos-Engineering-Platform.git
+cd Temenos-Engineering-Platform
+npm install
+npm test</code></pre></div>
+<div class="card"><h3>2. Start</h3><pre><code>npm start</code></pre><p>The current start command loads the platform entry point. It is not yet a full HTTP/web server.</p></div>
+<div class="card"><h3>3. Integrate</h3><p>Instantiate adapters and workflow modules from Node.js. Supply a project, artifacts, findings and evidence; then consume read-model/report outputs.</p></div>
+</div>
+<div class="warning" style="margin-top:18px"><b>Important:</b> do not treat the current package as a finished production UI. It is the platform foundation. Real provider credentials, bank repository onboarding, Temenos-Skills runtime configuration and external execution integrations still need to be wired for a real bank.</div>
+</div></section>
+
+<section id="features"><div class="wrap"><h2>Major capabilities</h2>
+<table><thead><tr><th>Capability</th><th>What it does</th><th>Primary value</th></tr></thead><tbody>
+<tr><td>Upgrade Intelligence</td><td>Correlates bank artifacts with release changes and classifies risk.</td><td>R16→R25 impact visibility</td></tr>
+<tr><td>Remediation</td><td>Produces approval-gated remediation and verification actions.</td><td>Controlled engineering changes</td></tr>
+<tr><td>Regression Intelligence</td><td>Tracks functional, build, runtime/log and dependency-impact validation.</td><td>Upgrade confidence</td></tr>
+<tr><td>Runtime Migration</td><td>Plans compile/build, migration rehearsal, data validation and runtime smoke checks.</td><td>Migration readiness</td></tr>
+<tr><td>ADC Zero-Downtime</td><td>Models active/standby topology, compatibility, session safety, drain/switch and rollback.</td><td>Keep digital channels available</td></tr>
+<tr><td>Control Tower</td><td>Combines upgrade, regression, migration and ADC gates.</td><td>Single readiness decision</td></tr>
+<tr><td>Evidence Federation</td><td>Normalizes and hashes evidence from multiple providers.</td><td>Auditability</td></tr>
+<tr><td>Enterprise Operations</td><td>Tenant/RBAC, metrics, SLOs, alerts, incidents and scale measurement.</td><td>Operational governance</td></tr>
+<tr><td>Certification</td><td>Coordinates rehearsal, DR, security, dependency, performance, evidence and release checks.</td><td>Production sign-off</td></tr>
+</tbody></table></div></section>
+
+<section id="upgrade"><div class="wrap"><h2>Flagship use case: R16 → R25 upgrade</h2><p class="lead">The platform is particularly suited to turning a large Transact upgrade into a repeatable migration factory.</p>
+<div class="diagram"><div class="flow">
+<div class="node"><b>Inventory</b>Scan bank repository</div><div class="arrow">→</div>
+<div class="node"><b>Compare</b>R16 vs R25 knowledge</div><div class="arrow">→</div>
+<div class="node"><b>Correlate</b>Fields/apps/jBC/classes</div><div class="arrow">→</div>
+<div class="node"><b>Risk</b>Critical / High / Medium / Low</div><div class="arrow">→</div>
+<div class="node"><b>Remediate</b>Generate controlled actions</div><div class="arrow">→</div>
+<div class="node"><b>Verify</b>SIT/UAT/runtime/ADC</div><div class="arrow">→</div>
+<div class="node"><b>Approve</b>Human GO / NO-GO</div>
+</div></div>
+<div class="safe" style="margin-top:18px"><b>ADC zero-downtime principle:</b> R16 remains the active path while R25 is prepared as standby. Compatibility, data checkpoints, session/transaction safety, health checks and rollback readiness are evaluated before a human-approved external ADC drain/switch. The platform does not switch production traffic itself.</div>
+</div></section>
+
+<section id="workflow"><div class="wrap"><h2>Recommended operating workflow</h2>
+<div class="check"><b>01</b><div><strong>Discover</strong><br>Connect RepoMind and inventory the bank customization estate.</div></div>
+<div class="check"><b>02</b><div><strong>Understand</strong><br>Use Temenos-Skills for release-aware R25 field/class/API knowledge and verification.</div></div>
+<div class="check"><b>03</b><div><strong>Assess</strong><br>Run upgrade, dependency, regression, migration and ADC intelligence.</div></div>
+<div class="check"><b>04</b><div><strong>Remediate</strong><br>Create changes and verification tasks; require approval for controlled actions.</div></div>
+<div class="check"><b>05</b><div><strong>Rehearse</strong><br>Repeat the migration in lower environments and capture evidence.</div></div>
+<div class="check"><b>06</b><div><strong>Certify</strong><br>Pass SIT/UAT/pre-production, DR, security, performance and rollback gates.</div></div>
+<div class="check"><b>07</b><div><strong>Cut over</strong><br>Hand execution to the bank's approved external deployment/ADC tooling.</div></div>
+<div class="check"><b>08</b><div><strong>Observe</strong><br>Collect post-cutover telemetry, evidence and reconciliation results.</div></div>
+</div></section>
+
+<section id="next"><div class="wrap"><h2>What's next?</h2><p class="lead">The foundation is now stable. The next phase should move from “platform implementation” to “usable product + real-bank validation”.</p>
+<div class="grid">
+<div class="card"><h3>1. CLI</h3><p>Create commands such as <code>tep project create</code>, <code>tep inventory</code>, <code>tep upgrade assess</code>, <code>tep adc assess</code>, <code>tep certify</code> and <code>tep report</code>.</p></div>
+<div class="card"><h3>2. Web Command Center</h3><p>Build a browser UI on top of the existing read-model surfaces: project dashboard, risk list, evidence, remediation, regression, migration, ADC and certification.</p></div>
+<div class="card"><h3>3. Real adapters</h3><p>Connect an actual RepoMind export, Temenos-Skills worker, PostgreSQL, queue, object storage, identity provider, SIEM and telemetry source.</p></div>
+<div class="card"><h3>4. Bank knowledge pack</h3><p>Define environment topology, release versions, applications, critical channels, interfaces, batch windows, DR objectives and rollback rules.</p></div>
+<div class="card"><h3>5. Real R16→R25 pilot</h3><p>Run the complete lifecycle against a non-production bank repository and produce a real upgrade assessment.</p></div>
+<div class="card"><h3>6. Production certification</h3><p>Only after the pilot passes should provider credentials, external execution integrations and production governance be onboarded.</p></div>
+</div>
+<h3 style="margin-top:34px">Recommended product direction</h3>
+<pre><code>                TEP Command Center
+                       │
+       ┌───────────────┼────────────────┐
+       │               │                │
+   Upgrade         Migration          ADC
+   Intelligence    Intelligence       Zero-Downtime
+       │               │                │
+       └───────────────┼────────────────┘
+                       │
+                Evidence + Gates
+                       │
+                Human Approval
+                       │
+              External Execution
+                       │
+                Audit + Evidence</code></pre>
+</div></section>
+
+<section><div class="wrap"><h2>Safety model</h2><div class="safe"><b>Production remains human-controlled.</b><br>The platform can analyze, plan, correlate, simulate, verify and recommend. Production deployment, migration, ADC switching, rollback and failover remain external actions requiring explicit approval and provider configuration.</div></div></section>
+</main>
+
+<footer><div class="wrap">Temenos Engineering Platform • Integration and workflow platform for Temenos engineering intelligence • <a href="https://github.com/zainknoman/Temenos-Engineering-Platform">GitHub</a></div></footer>
+</body>
+</html>
