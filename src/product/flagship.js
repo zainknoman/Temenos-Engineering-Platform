@@ -19,7 +19,7 @@ export const FLAGSHIP_REPOMIND_FIXTURE = Object.freeze({
   files: [
     { path: 'CUSTOMER/PK.CUSTOMER.b', extension: '.b', language: 'jBC', lines: 42, application: 'CUSTOMER', metadata: { application: 'CUSTOMER', fields: ['NATIONALITY', 'ID.TYPE.NO'] } },
     { path: 'hooks/CustomerHook.java', extension: '.java', language: 'Java', lines: 80, application: 'CUSTOMER', metadata: { application: 'CUSTOMER', fields: ['NATIONALITY'] } },
-    { path: 'FUNDS/PK.FUNDS.b', extension: '.b', language: 'jBC', lines: 31, application: 'FUNDS', metadata: { application: 'FUNDS', fields: ['ACCOUNT.NO'] } }
+    { path: 'FUNDS/PK.FUNDS.b', extension: '.b', language: 'jBC', lines: 31, application: 'FUNDS', metadata: { application: 'FUNDS', fields: ['ACCOUNT.NO', 'NEW.FIELD'] } }
   ],
   imports: [
     { from: 'hooks/CustomerHook.java', to: 'CUSTOMER/PK.CUSTOMER.b', kind: 'REFERENCES', confidence: 'high' },
