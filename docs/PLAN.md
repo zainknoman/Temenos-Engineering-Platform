@@ -71,7 +71,7 @@ The flagship workflow is:
 - [x] Identify missing product surfaces: CLI, project/workspace model, HTTP/read API, web command center, real-provider onboarding and flagship E2E demo.
 - [x] Preserve repository boundaries and human approval requirements.
 
-### 21.1 — CLI Foundation — IN PROGRESS
+### 21.1 — CLI Foundation — COMPLETE
 
 Goal: provide a stable `tep` command entry point without changing existing domain behavior.
 
@@ -80,8 +80,8 @@ Implementation:
 - [x] Add argument parser/help/version foundation.
 - [x] Expose CLI through `package.json`.
 - [x] Add focused CLI unit tests.
-- [ ] Run and pass the complete test suite.
-- [ ] Validate Node.js 20 and 22 CI.
+- [x] Run and pass the complete test suite.
+- [x] Validate Node.js 20 and 22 CI.
 
 Exit gate:
 - `tep --help` works.
@@ -89,14 +89,21 @@ Exit gate:
 - Existing module imports remain compatible.
 - Full test suite passes.
 
-### 21.2 — Project / Workspace Model — PLANNED
+### 21.2 — Project / Workspace Model — IN PROGRESS
 
-- [ ] Define stable project identity and workspace configuration.
-- [ ] Define source/repository configuration.
-- [ ] Define Temenos release pair and environment metadata.
-- [ ] Define project-level policy and safety settings.
-- [ ] Persist/load project configuration.
+- [x] Define stable project identity and workspace configuration.
+- [x] Define source/repository configuration.
+- [x] Define Temenos release pair and environment metadata.
+- [x] Define project-level policy and safety settings.
+- [x] Persist/load project configuration.
 - [ ] Add tests and full-suite validation.
+
+Exit gate:
+- Project configuration has a stable versioned shape.
+- Local and Git repository sources are supported.
+- Source/target Temenos releases are explicit.
+- Production and autonomous execution remain disabled by default.
+- Full test suite passes.
 
 ### 21.3 — Product CLI Workflows — PLANNED
 

@@ -1,19 +1,35 @@
 # Next Phase
 
-Phase 17 is implemented as the enterprise hardening baseline.
+## Phase 21 — Productization + Real-World Validation
 
-## Phase 18 — Production Infrastructure Implementation
+### Current Work: 21.2 — Project / Workspace Model
 
-Next priorities:
-- PostgreSQL connection pool and migrations
-- concrete Kafka/queue provider
-- object storage implementation
-- SSO/OIDC and enterprise RBAC
-- secret-manager integration
-- real retention workers
-- SIEM/audit export
-- concrete ADC/load-balancer and TAFJ/runtime connectors
-- HA deployment manifests
-- backup/restore automation
+Phase 21.1 CLI Foundation is complete: `tep` entry point, help/version contract, focused tests, and full CI validation.
 
-Production execution remains external, explicitly approval-gated and auditable.
+The active implementation slice is **21.2 — Project / Workspace Model**.
+
+### 21.2 implementation
+
+- Stable project identity and versioned workspace configuration
+- Local or Git repository source configuration
+- Explicit Temenos source/target release pair
+- Environment metadata
+- Project-level safety policy
+- JSON persistence/load support
+- Deterministic unit tests
+
+### Completion rule
+
+21.2 must not be marked COMPLETE until the new tests and the complete existing test suite pass in CI.
+
+### After 21.2
+
+Proceed to **21.3 — Product CLI Workflows**, beginning with:
+
+1. `tep project create`
+2. `tep project show`
+3. `tep inventory`
+
+All workflows must reuse existing TEP domain engines and adapters.
+
+Production execution remains disabled by default and explicitly human-approval gated.
