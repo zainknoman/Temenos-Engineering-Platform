@@ -132,7 +132,7 @@ Each command must call existing domain surfaces rather than duplicate their logi
 - [x] Add integration tests using deterministic fixtures.
 - [x] Keep onboarding read-only; no production execution is enabled.
 
-### 21.5 — Report / Read API — IN PROGRESS
+### 21.5 — Report / Read API — COMPLETE
 
 - [x] Define stable product read models.
 - [x] Expose project summary.
@@ -145,19 +145,21 @@ Each command must call existing domain surfaces rather than duplicate their logi
 - [x] Expose evidence/audit timeline read-model slots.
 - [x] Add focused contract tests.
 - [x] Add `tep report`, `tep report --format json` and `tep status`.
-- [ ] Run focused and full test suites and validate CI.
+- [x] Run focused and full test suites and validate CI.
 
-### 21.6 — Web Command Center — PLANNED
+### 21.6 — Web Command Center — IN PROGRESS
 
-- [ ] Build a thin browser product surface over the existing read models.
-- [ ] Project dashboard.
-- [ ] Upgrade/risk view.
-- [ ] Remediation view.
-- [ ] Regression/migration view.
-- [ ] ADC readiness view.
-- [ ] Certification/GO-NO-GO view.
-- [ ] Evidence/audit view.
-- [ ] Keep domain intelligence outside the UI.
+- [x] Build a thin browser product surface over the existing read models.
+- [x] Project dashboard.
+- [x] Upgrade/risk view.
+- [x] Remediation view.
+- [x] Regression/migration view.
+- [x] ADC readiness view.
+- [x] Certification/GO-NO-GO view.
+- [x] Evidence/audit view.
+- [x] Keep domain intelligence outside the UI.
+- [x] Add deterministic browser-surface contract tests.
+- [ ] Run focused and full test suites locally.
 
 ### 21.7 — Flagship R16 → R25 Demo — PLANNED
 
