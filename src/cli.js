@@ -133,21 +133,23 @@ export function formatVersion() {
   return `Temenos Engineering Platform v${VERSION}`;
 }
 
-export async function runCli(argv = [], { stdout = console.log } = {}) {
+export function runCli(argv = [], { stdout = console.log } = {}) {
   const parsed = parseCliArgs(argv);
   try {
     switch (parsed.command) {
       case 'help':
-        return stdout(formatHelp()), 0;
+        stdout(formatHelp());
+        return 0;
       case 'version':
-        return stdout(formatVersion()), 0;
+        stdout(formatVersion());
+        return 0;
       case 'project':
-        if (parsed.args[0] === 'create') return await projectCreate(parsed.args.slice(1), stdout);
-        if (parsed.args[0] === 'show') return await projectShow(parsed.args.slice(1), stdout);
+        if (parsed.args[0] === 'create') return projectCreate(parsed.args.slice(1), stdout);
+        if (parsed.args[0] === 'show') return projectShow(parsed.args.slice(1), stdout);
         stdout('Usage: tep project <create|show> [options]');
         return 1;
       case 'inventory':
-        return await inventory(parsed.args, stdout);
+        return inventory(parsed.args, stdout);
       default:
         stdout(`Unknown command: ${parsed.command}\\n\\n${formatHelp()}`);
         return 1;
@@ -159,7 +161,7 @@ export async function runCli(argv = [], { stdout = console.log } = {}) {
 }
 
 export async function main(argv = process.argv.slice(2)) {
-  return runCli(argv);
+  return await runCli(argv);
 }
 
 export { VERSION };
