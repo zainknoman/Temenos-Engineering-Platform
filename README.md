@@ -2,45 +2,26 @@
 
 Integration and workflow platform for Temenos engineering intelligence.
 
-## Architecture
+## Completed lifecycle
 
-- Temenos-Skills — Temenos release/domain knowledge
-- RepoMind — bank customization repository intelligence
-- agentic-suite — workflow/conductor integration
-- AgentVerse — optional generic agent/runtime provider
-- T24Tools — presentation/cockpit surface
+Phases 1–17 established the architecture, contracts, RepoMind and Temenos-Skills integration, upgrade/regression/migration intelligence, ADC zero-downtime planning, control tower, live evidence, scenario simulation, enterprise persistence boundaries and hardening.
 
-The platform owns cross-system correlation, evidence, risk, workflow policy, remediation, reports and enterprise integration contracts.
+## Phase 18 — Production Infrastructure
 
-## Flagship capability
+Concrete provider implementations now exist behind stable platform boundaries for PostgreSQL pooling/migrations, Kafka/queue transport, object storage, OIDC claims, secret management, retention, SIEM audit export, ADC/load-balancer control, TAFJ runtime telemetry, backup/restore and HA deployment.
 
-R16 -> R25 Upgrade & Migration Intelligence
+Providers are injected; no cloud/vendor SDK is required by the core package.
 
-Bank Repository -> RepoMind -> Temenos-Skills -> Correlation/Impact -> Risk -> Remediation -> Verification/Regression -> Runtime/Migration -> ADC Zero-Downtime -> Upgrade Control Tower -> Human Approval -> External Operations -> Live Cutover Evidence -> Cutover Command Center -> Evidence Federation -> Enterprise Persistence/Telemetry -> Controlled External Execution
+## Phase 19 — Enterprise Operations
 
-## Implemented phases
+The platform exposes a tenant/RBAC-aware Command Center surface, Prometheus-compatible metrics, SLO dashboard data, alert evaluation, operator incident workflow and measurable load-budget utilities.
 
-1. architecture/discovery
-2. contracts/store/RepoMind boundary
-3. Temenos-Skills adapter
-4. release-aware upgrade intelligence
-5. orchestration
-6. T24Tools surface
-7. approval-gated remediation
-8. regression intelligence
-9. runtime/migration intelligence
-10. ADC zero-downtime intelligence
-11. Upgrade Control Tower
-12. Execution Adapter & Operations Integration
-13. Live Cutover Evidence & Incident Control
-14. Cutover Command Center & Scenario Simulation
-15. Production Integration & Evidence Federation
-16. Production Connectors & Enterprise Persistence
+## Phase 20 — Production Certification
 
-## Phase 16
+Certification plans cover R16→R25 rehearsal, multi-environment validation, ADC zero-downtime, rollback, DR, security, dependencies, performance, evidence/audit, runbooks and deployment checklists. Production sign-off remains explicit human approval.
 
-Phase 16 adds PostgreSQL/event-bus persistence boundaries, ADC/runtime telemetry adapters, tenant and retention policy, operational SLO metrics, controlled external execution integration, and the V16 T24Tools command-center contract.
+## Safety
 
-Production execution remains external and explicitly approval-gated. Credentials and infrastructure clients remain outside the platform contracts.
+`productionExecution` and `autonomousExecution` remain false throughout intelligence and platform layers. External execution requires an explicit provider and human approval.
 
-See docs/PHASES-FLOWCHART.md for developer-friendly flowcharts for every phase and docs/PHASE-16-PRODUCTION-CONNECTORS.md for the Phase 16 design.
+See `docs/DEVELOPMENT-ROADMAP.md` for the single phase status and remaining release gates.
