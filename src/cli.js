@@ -3,6 +3,7 @@ import { dirname, resolve } from 'node:path';
 import { createProjectConfig, loadProjectConfig } from './product/project.js';
 import { RepoMindAdapter } from './adapters/repomind.js';
 import { formatReadModelReport, loadReadModelReport } from './product/report.js';
+import { formatFlagshipDemo } from './product/flagship.js';
 
 const VERSION = '0.3.0';
 const DEFAULT_PROJECT_FILE = '.tep/project.json';
@@ -113,6 +114,13 @@ export function formatHelp() {
     '  inventory                    Inspect a RepoMind export',
     '  report                       Show the project read model/report',
     '  status                       Show the project readiness status',
+    '  demo r16-r25                 Run the deterministic flagship R16→R25 workflow',
+    '  upgrade assess --demo       Run the flagship upgrade assessment',
+    '  regression assess --demo    Run the flagship regression assessment',
+    '  migration assess --demo     Run the flagship migration assessment',
+    '  adc assess --demo           Run the flagship ADC readiness assessment',
+    '  control-tower assess --demo Run the flagship control-tower assessment',
+    '  certify --demo              Run the flagship certification assessment',
     '',
     'Project create options:',
     '  --id <id>                    Stable project id',
@@ -129,6 +137,8 @@ export function formatHelp() {
     '  --input <file>               RepoMind export for inventory',
     '  --format <json|text>         Report output format (default: text)',
     '  --check-temenos-skills       Check the local Temenos-Skills provider',
+    '  --demo                       Use the deterministic flagship fixture',
+    '  --approval <PENDING|APPROVED>  Simulate the human GO/NO-GO approval gate',
     '  -h, --help                   Show this help message',
     '  -v, --version                Show the platform version'
   ].join('\n');
@@ -159,6 +169,22 @@ export function runCli(argv = [], { stdout = console.log } = {}) {
         return report(parsed.args, stdout, 'text');
       case 'status':
         return report(parsed.args, stdout, 'text');
+      case 'demo':
+        if (parsed.args[0] === 'r16-r25') return flagship(parsed.args.slice(1), stdout);
+        stdout('Usage: tep demo r16-r25 [--approval PENDING|APPROVED]');
+        return 1;
+      case 'upgrade':
+      case 'regression':
+      case 'migration':
+      case 'adc':
+      case 'control-tower':
+        if (parsed.args[0] === 'assess' && parsed.args.includes('--demo')) return flagship(parsed.args.slice(1), stdout);
+        stdout('This assessment command currently requires --demo.');
+        return 1;
+      case 'certify':
+        if (parsed.args.includes('--demo')) return flagship(parsed.args.slice(1), stdout);
+        stdout('This certification command currently requires --demo.');
+        return 1;
       default:
         stdout(`Unknown command: ${parsed.command}\\n\\n${formatHelp()}`);
         return 1;
@@ -173,7 +199,14 @@ export async function main(argv = process.argv.slice(2)) {
   return await runCli(argv);
 }
 
-export { VERSION };async function report(args, stdout, defaultFormat = 'text') {
+export { VERSION };async function flagship(args, stdout) {
+  const opts = options(args);
+  const approval = value(opts, 'approval') ?? 'PENDING';
+  stdout(await formatFlagshipDemo({ finalApprovalStatus: String(approval).toUpperCase() }));
+  return 0;
+}
+
+async function report(args, stdout, defaultFormat = 'text') {
   const opts = options(args);
   const configPath = resolve(value(opts, 'config') ?? DEFAULT_PROJECT_FILE);
   const inputPath = value(opts, 'input');
