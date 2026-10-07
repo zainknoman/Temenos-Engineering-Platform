@@ -5,7 +5,7 @@ import { RepoMindAdapter } from './adapters/repomind.js';
 import { formatReadModelReport, loadReadModelReport } from './product/report.js';
 import { formatFlagshipDemo } from './product/flagship.js';
 
-const VERSION = '0.3.0';
+const VERSION = '0.4.0';
 const DEFAULT_PROJECT_FILE = '.tep/project.json';
 
 export function parseCliArgs(argv = []) {
