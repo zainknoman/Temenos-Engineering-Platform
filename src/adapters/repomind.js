@@ -6,6 +6,7 @@ function language(f){return f.language??f.lang??null}
 export class RepoMindAdapter{
  constructor(o={}){this.id='repomind';this.version=o.version??'read-only-export-v1';this.transport=o.transport??'export';this.capabilities=['getRepositoryProfile','listArtifacts','findSymbol','findReferences','getDependencies','getDependents','analyzeImpact','getLimitations'];this.index=null}
  loadIndex(index){if(!index||!Array.isArray(index.files))throw new Error('RepoMind export must contain a files array');this.index=index;return this.getRepositoryProfile()}
+ healthCheck(){if(!this.index)return{status:'UNVERIFIED',reason:'RepoMind export has not been loaded.'};return{status:'READY',sourceSystem:'RepoMind',fileCount:this.index.files.length,transport:this.transport}}
  getRepositoryProfile(){if(!this.index)throw new Error('RepoMind index is not loaded');return{sourceSystem:'RepoMind',transport:this.transport,projectName:this.index.project?.name??this.index.name??null,fileCount:this.index.files.length,stats:this.index.stats??{},limitations:this.getLimitations()}}
  listArtifacts(filter={}){if(!this.index)throw new Error('RepoMind index is not loaded');return this.index.files.filter(f=>(!filter.extension||(f.extension??f.ext)===filter.extension)&&(!filter.language||language(f)===filter.language))}
  findSymbol(query){if(!this.index)throw new Error('RepoMind index is not loaded');const q=String(query??'').toLowerCase();return(this.index.symbols??[]).filter(s=>String(s.name??'').toLowerCase().includes(q))}
