@@ -41,7 +41,8 @@
       "metadata": {
         "application": "FUNDS",
         "fields": [
-          "ACCOUNT.NO"
+          "ACCOUNT.NO",
+          "NEW.FIELD"
         ]
       }
     }
