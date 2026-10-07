@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: temenos-engineering-platform}
+spec:
+  replicas: 3
+  strategy: {type: RollingUpdate}
+  selector: {matchLabels: {app: temenos-engineering-platform}}
+  template:
+    metadata: {labels: {app: temenos-engineering-platform}}
+    spec:
+      containers:
+        - name: platform
+          image: temenos-engineering-platform:release
+          ports: [{containerPort: 3000}]
+          readinessProbe: {httpGet: {path: /ready, port: 3000}}
+          livenessProbe: {httpGet: {path: /health, port: 3000}}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: {name: temenos-engineering-platform}
+spec:
+  minAvailable: 2
+  selector: {matchLabels: {app: temenos-engineering-platform}}

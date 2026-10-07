@@ -1,0 +1,1 @@
+export function buildReleaseCandidate({version,commit,checks=[]}={}){return{version,commit,checks,status:'CANDIDATE',createdAt:new Date().toISOString()};} export function validateReleaseCandidate(candidate){const failed=candidate.checks.filter(c=>c.status!=='PASSED');return{status:failed.length?'REJECTED':'ACCEPTED',failedChecks:failed.map(c=>c.id)};}
