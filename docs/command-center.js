@@ -11,8 +11,17 @@ function render(report){
  const status=byId(ids.status);if(status)status.className='status '+statusClass(report.summary?.status);for(const id of [ids.repomind,ids.skills]){const n=byId(id);if(n)n.className='pill '+statusClass(n.textContent)}
  renderList('blocker-list',report.summary?.blockers??[],'No blockers reported.');renderList('warning-list',report.summary?.warnings??[],'No warnings reported.');return report;
 }
-async function loadJsonFile(file){if(!file)throw new Error('No report file selected.');const report=JSON.parse(await file.text());if(!report||typeof report!=='object'||!report.summary||!report.project)throw new Error('Report JSON is missing project or summary data.');return render(report)}
-async function loadFromUrl(url){const response=await fetch(url);if(!response.ok)throw new Error('HTTP '+response.status);return render(await response.json())}
+function normalizeReport(raw){
+ const report=raw?.report&&typeof raw.report==='object'?raw.report:raw;
+ if(!report||typeof report!=='object')throw new Error('Report JSON must contain a JSON object.');
+ if(!report.project||typeof report.project!=='object')throw new Error('Report JSON is missing project data.');
+ if(!report.summary||typeof report.summary!=='object')throw new Error('Report JSON is missing summary data.');
+ if(!report.project.name||!report.project.sourceRelease||!report.project.targetRelease)throw new Error('Report JSON has incomplete project data.');
+ if(!report.summary.status||!report.summary.counts||typeof report.summary.counts!=='object')throw new Error('Report JSON has incomplete summary data.');
+ return report;
+}
+async function loadJsonFile(file){if(!file)throw new Error('No report file selected.');let raw;try{raw=JSON.parse((await file.text()).replace(/^\\uFEFF/,''));}catch(error){throw new Error('Invalid JSON: '+error.message)}return render(normalizeReport(raw))}
+async function loadFromUrl(url){const response=await fetch(url);if(!response.ok)throw new Error('HTTP '+response.status);return render(normalizeReport(await response.json()))}
 function setMessage(message,error=false){const n=byId('message');if(n){n.textContent=message;n.dataset.error=error?'true':'false'}}
 function loadDemo(){render({schemaVersion:'1.0',generatedAt:new Date().toISOString(),project:{id:'bank-r16-r25',name:'Bank R16 to R25',sourceRelease:'R16',targetRelease:'R25',environment:'sit'},adapters:{repomind:{status:'UNVERIFIED'},temenosSkills:{status:'UNVERIFIED'}},inventory:null,summary:{status:'READY_WITH_WARNINGS',blockers:[],warnings:['Load a RepoMind report to inspect the bank repository.'],counts:{findings:0,risk:0,remediation:0,regression:0,migration:0,adc:0,certification:0,evidence:0}},safety:{productionExecution:false,autonomousExecution:false,requireHumanApproval:true}});setMessage('Demo read model loaded. Choose “Load report JSON” to load a real report.')}
 function initialize(){
