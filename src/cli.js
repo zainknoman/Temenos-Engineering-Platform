@@ -78,6 +78,10 @@ async function inventory(args, stdout) {
   const rawInputPath = value(opts, 'input') ?? config.source.path;
   if (!rawInputPath) throw new Error('RepoMind export path is required: use --input <path> or project source.path');
   const inputPath = resolve(rawInputPath);
+  if (config.source.path !== inputPath) {
+    config.source = { ...config.source, path: inputPath };
+    await writeFile(configPath, JSON.stringify(config, null, 2) + '\n', 'utf8');
+  }
   const index = JSON.parse(await readFile(inputPath, 'utf8'));
   const adapter = new RepoMindAdapter();
   const profile = adapter.loadIndex(index);
